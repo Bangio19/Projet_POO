@@ -5,10 +5,70 @@
  */
 package DAO;
 
+import Model.Promotion;
+import java.sql.*;
+import java.util.*;
+
 /**
  *
  * @author Bauti
  */
-public class PromotionDAO {
+public class PromotionDAO extends DAO<Promotion>{
     
+    public PromotionDAO(Connection conn) {
+        super(conn);
+    }
+
+    @Override
+    public boolean creer(Promotion obj) {
+        //Reste à modifier
+        try {
+            Statement statement = this.connect.createStatement();
+            String NOM = obj.getNom();
+            int insertCount = statement.executeUpdate("INSERT INTO PROMOTION VALUES('NOM')");
+
+            System.out.println("Inserted test_value successfully : " + insertCount);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean supprimer(Promotion obj) {
+        try {
+            Statement statement = this.connect.createStatement();
+
+            PreparedStatement st = this.connect.prepareStatement("DELETE FROM PROMOTION WHERE ID=?");
+            st.setInt(1, obj.getId());
+            st.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean modifier(Promotion obj) 
+    {
+        return false;
+    }
+
+    @Override
+    public Promotion trouver(int id) {
+        Promotion promo = null;
+
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM promotion WHERE ID = " + id);
+            if (result.first()) 
+            {
+                promo = new Promotion(id, result.getString("NOM"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return promo;
+    }
 }
