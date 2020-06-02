@@ -18,7 +18,7 @@ public class DBConnect {
     public DBConnect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/planning?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3308/planning?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
             st = con.createStatement();
             System.out.println("Connexion à la BDD réussie");
          
@@ -27,7 +27,9 @@ public class DBConnect {
 
         }
     }
-
+    
+    public Connection getCon(){return con;}
+    
     public void getData() {
         try {
             String query = "select * from promotion";
