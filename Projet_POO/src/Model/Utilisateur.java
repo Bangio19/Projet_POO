@@ -15,9 +15,9 @@ public class Utilisateur {
     private String m_mdp;
     private String m_nom;
     private String m_prenom;
-    private boolean m_droit;
+    private int m_droit;
     
-    public Utilisateur(int id, String email, String mdp, String nom, String prenom, boolean droit)
+    public Utilisateur(int id, String email, String mdp, String nom, String prenom, int droit)
     {
         m_id = id;
         m_email = email;
@@ -33,13 +33,13 @@ public class Utilisateur {
     public String getMdp(){return m_mdp;}
     public String getNom(){return m_nom;}
     public String getPrenom(){return m_prenom;}
-    public boolean getDroit(){return m_droit;}
+    public int getDroit(){return m_droit;}
     
 
     public void setEmail(String email){m_email=email;}
     public void setMdp(String mdp){m_mdp=mdp;}
     public void setNom(String nom){m_nom=nom;}
     public void setPrenom(String prenom){m_prenom=prenom;}
-    public void setDroit(boolean droit){m_droit=droit;}
+    public void setDroit(int droit){m_droit=droit;}
     
 }
