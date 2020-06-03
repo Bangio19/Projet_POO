@@ -7,6 +7,8 @@ package Projet_POO;
 import DAO.*;
 import Model.*;
 import java.sql.Connection;
+import View.*;
+import javax.swing.JFrame;
 /**
  *
  * @author Bauti
@@ -17,6 +19,8 @@ public class Projet_POO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        Planning plan = new Planning();
         DBConnect conn = new DBConnect();
         //connect.getData();
        
@@ -30,6 +34,10 @@ public class Projet_POO {
         System.out.println("Salle Nom: "+salle.getNom());
         System.out.println("Salle Capacite: "+salle.getCapacite());
         System.out.println("Salle Id_site: "+salle.getIdSite());
+        
+        
     }
+    
+    
     
 }

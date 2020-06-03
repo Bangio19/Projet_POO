@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package View;
-
+import javax.swing.*;
 /**
  *
  * @author antoi
  */
-public class Accueil {
+public class Accueil extends JFrame {
+   
+    
+    
     
 }
