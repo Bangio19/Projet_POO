@@ -21,6 +21,8 @@ public class SiteDAO extends DAO<Site>{
     @Override
     public boolean creer(Site obj) {
         //Reste à modifier
+        
+        // TODO : vider la méthode
         try {
             Statement statement = this.connect.createStatement();
             String NOM = obj.getNom();
@@ -48,31 +50,7 @@ public class SiteDAO extends DAO<Site>{
 
     @Override
     public boolean modifier(Site obj) {
-//        Scanner sc=new Scanner(System.in);
-//        String NOM=obj.getNom();
-//        int CAPACITE, ID_SITE;
-//        
-//        System.out.println("Entrez le nouveau nom de la salle. Si pas de changement, n'entrez aucune valeur");
-//        NOM = sc.nextLine();
-//        if(NOM == "")
-//            NOM=obj.getNom();
-//        else
-//            obj.setNom(NOM);
-//       
-//        System.out.println("Entrez la nouvelle capacité de la salle");
-//        int CAPACITE = sc.nextInt();
-//        System.out.println("Entrez le nouvel ID du site de la salle");
-//        int ID_SITE = sc.nextInt();    
-//        
-//        try {
-//            Statement statement = this.connect.createStatement();
-//
-//            int insertCount = statement.executeUpdate("INSERT INTO SALLE VALUES('NOM','CAPACITE','ID_SITE')");
-//
-//            System.out.println("Inserted test_value successfully : " + insertCount);
-//        } catch (Exception ex) {
-//            System.out.println(ex);
-//        }
+
 
         return false;
     }

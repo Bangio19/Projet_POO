@@ -20,6 +20,7 @@ public class TypeCoursDAO extends DAO<TypeCours> {
     @Override
     public boolean creer(TypeCours obj) {
         //Reste à modifier
+       // TODO : Vider la méthode
         try {
             Statement statement = this.connect.createStatement();
             String NOM = obj.getNom();
@@ -47,6 +48,8 @@ public class TypeCoursDAO extends DAO<TypeCours> {
 
     @Override
     public boolean modifier(TypeCours obj) {
+        // TODO : vider la méthode
+        
 //        Scanner sc=new Scanner(System.in);
 //        String NOM=obj.getNom();
 //        int CAPACITE, ID_SITE;
