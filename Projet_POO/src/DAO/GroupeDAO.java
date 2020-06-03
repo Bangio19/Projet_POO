@@ -19,31 +19,13 @@ public class GroupeDAO extends DAO<Groupe>{
 
     @Override
     public boolean creer(Groupe obj) {
-        //Reste à modifier
-        try {
-            Statement statement = this.connect.createStatement();
-            String NOM = obj.getNom();
-            int ID_PROMOTION = obj.getIdPromotion();
-            int insertCount = statement.executeUpdate("INSERT INTO PROMOTION VALUES('NOM','ID_PROMOTION')");
-
-            System.out.println("Inserted test_value successfully : " + insertCount);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
         return false;
     }
     
     @Override
     public boolean supprimer(Groupe obj) {
-        try {
-            Statement statement = this.connect.createStatement();
-
-            PreparedStatement st = this.connect.prepareStatement("DELETE FROM GROUPE WHERE ID=?");
-            st.setInt(1, obj.getId());
-            st.executeUpdate();
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
         return false;
     }
 

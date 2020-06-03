@@ -22,29 +22,13 @@ public class PromotionDAO extends DAO<Promotion>{
     @Override
     public boolean creer(Promotion obj) {
         //Reste à modifier
-        try {
-            Statement statement = this.connect.createStatement();
-            String NOM = obj.getNom();
-            int insertCount = statement.executeUpdate("INSERT INTO PROMOTION VALUES('NOM')");
-
-            System.out.println("Inserted test_value successfully : " + insertCount);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
         return false;
     }
     
     @Override
     public boolean supprimer(Promotion obj) {
-        try {
-            Statement statement = this.connect.createStatement();
-
-            PreparedStatement st = this.connect.prepareStatement("DELETE FROM PROMOTION WHERE ID=?");
-            st.setInt(1, obj.getId());
-            st.executeUpdate();
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
         return false;
     }
 

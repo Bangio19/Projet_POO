@@ -14,17 +14,17 @@ public class Enseignant {
     private int m_id;
     
     //Quelle méthode faire? Une liste ou faire des associations 1:1?
-    private ArrayList<Cours> listCours;
+    //private ArrayList<Cours> listCours;
     private int m_idCours;
   
     
-    public Enseignant(int id, Cours obj){
+    public Enseignant(int id, int idCours){
         m_id=id;
-        listCours.add(obj);
+        m_idCours=idCours;
     }
     
     public int getId(){return m_id;}
-    public ArrayList getCours(){return listCours;}
+    public int getCours(){return m_idCours;}
 
     //public void setCours(String nom){m_nom=nom;}
 }

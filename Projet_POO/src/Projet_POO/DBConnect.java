@@ -15,7 +15,7 @@ public class DBConnect {
     private Statement st;
     private ResultSet rs;
 
-    public DBConnect() {
+    public DBConnect() { 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3308/planning?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");

@@ -21,31 +21,13 @@ public class EtudiantDAO extends DAO<Etudiant>{
     @Override
     public boolean creer(Etudiant obj) {
         //Reste à modifier
-        try {
-            Statement statement = this.connect.createStatement();
-            int ID_UTILISATEUR = obj.getId();
-            int NUMERO = obj.getNumero();
-            int ID_GROUPE = obj.getIdGroupe()   ;
-            int insertCount = statement.executeUpdate("INSERT INTO PROMOTION VALUES('ID_UTILISATEUR','NUMERO','ID_GROUPE')");
-
-            System.out.println("Inserted test_value successfully : " + insertCount);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
         return false;
     }
     
     @Override
     public boolean supprimer(Etudiant obj) {
-        try {
-            Statement statement = this.connect.createStatement();
-
-            PreparedStatement st = this.connect.prepareStatement("DELETE FROM ETUDIANT WHERE ID=?");
-            st.setInt(1, obj.getId());
-            st.executeUpdate();
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
         return false;
     }
 

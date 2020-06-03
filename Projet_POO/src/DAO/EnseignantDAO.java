@@ -22,30 +22,13 @@ public class EnseignantDAO extends DAO<Enseignant>{
     @Override
     public boolean creer(Enseignant obj) {
         //Reste à modifier
-        try {
-            Statement statement = this.connect.createStatement();
-            int ID_UTILISATEUR = obj.getId();
-            ArrayList<Cours> ID_COURS = obj.getCours();
-            int insertCount = statement.executeUpdate("INSERT INTO PROMOTION VALUES('NUMERO','ID_GROUPE')");
-
-            System.out.println("Inserted test_value successfully : " + insertCount);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
         return false;
     }
     
     @Override
     public boolean supprimer(Enseignant obj) {
-        try {
-            Statement statement = this.connect.createStatement();
-
-            PreparedStatement st = this.connect.prepareStatement("DELETE FROM ETUDIANT WHERE ID=?");
-            st.setInt(1, obj.getId());
-            st.executeUpdate();
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
         return false;
     }
 
@@ -65,7 +48,7 @@ public class EnseignantDAO extends DAO<Enseignant>{
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM promotion WHERE ID = " + id);
             if (result.first()) 
             {
-                etudiant = new Etudiant(id, result.getInt("NUMERO"), result.getInt("ID_GROUPE"));
+                enseignant = new Enseignant(result.getInt("ID_UTILISATEUR"), result.getInt("ID_COURS"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
