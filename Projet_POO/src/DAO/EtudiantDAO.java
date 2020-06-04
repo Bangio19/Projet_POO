@@ -44,7 +44,7 @@ public class EtudiantDAO extends DAO<Etudiant>{
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM promotion WHERE ID = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM etudiant WHERE ID_UTILISATEUR = " + id);
             if (result.first()) 
             {
                 etudiant = new Etudiant(id, result.getInt("NUMERO"), result.getInt("ID_GROUPE"));

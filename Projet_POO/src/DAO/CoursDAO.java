@@ -42,7 +42,7 @@ public class CoursDAO extends DAO<Cours>{
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM promotion WHERE ID = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cours WHERE ID = " + id);
             if (result.first()) 
             {
                 cours = new Cours(id, result.getString("NOM"));

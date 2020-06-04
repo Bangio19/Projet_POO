@@ -35,13 +35,11 @@ public class Projet_POO {
        
         Connection connect=conn.getCon();
         
-        //DAO<Enseignant> enseignantDao= new EnseignantDAO(connect);
         int id=16;
         //SalleDAO salleDao=new SalleDAO(connect);
-        Enseignant prof=new Enseignant(id);
-        
-        Recherche a;
-        a.consulter_cours_enseignant(prof);
+        DAO<Enseignant> enseignantDao= new EnseignantDAO(connect);
+
+        Enseignant prof= enseignantDao.trouver(id);
        /* DAO<Groupe> groupeDao= new GroupeDAO(connect);
         
         //int id = 3;
@@ -90,12 +88,11 @@ public class Projet_POO {
         catch (ParseException ex) {
             Logger.getLogger(SeanceDAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
-               */
-        //Promotion promo = new Promotion(1,id);
-        //PromotionDao.creer(promo);
+*/
         
         System.out.println("ENseignant Id: "+prof.getId());
         System.out.println("enseignnant cours: "+prof.getCours());
+
         
       
     }
