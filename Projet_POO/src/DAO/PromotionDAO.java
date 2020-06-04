@@ -21,8 +21,16 @@ public class PromotionDAO extends DAO<Promotion>{
 
     @Override
     public boolean creer(Promotion obj) {
-        //Reste à modifier
-        
+        try {
+            Statement statement = this.connect.createStatement();
+            String NOM = obj.getNom();
+            
+            int insertCount = statement.executeUpdate("INSERT INTO promotion(NOM) VALUES('"+NOM+"')");
+
+            System.out.println("Inserted test_value successfully : " + insertCount);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
         return false;
     }
     

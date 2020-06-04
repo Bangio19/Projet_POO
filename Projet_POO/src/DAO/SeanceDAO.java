@@ -28,42 +28,19 @@ public class SeanceDAO extends DAO<Seance> {
     @Override
     public boolean creer(Seance obj) {
 
-        Scanner sc = new Scanner(System.in);
-        int semaine = sc.nextInt();
-
-        String dateString = sc.nextLine();
-
-        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-
         try {
-            java.util.Date date = format.parse(dateString);
-        } catch (ParseException ex) {
-            Logger.getLogger(SeanceDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        java.util.Date date = sc.next();
-
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        java.sql.Time sqlTime = new java.sql.Time(date.getTime());
-
-        int semaine = sc.nextInt();
-
-        int semaine = sc.nextInt();
-
-        int semaine = sc.nextInt();
-
-        int semaine = sc.nextInt();
-
-        try {
-
-            int insertCount = statement.executeUpdate("INSERT INTO SEANCE VALUES('NOM','CAPACITE','ID_SITE')");
-
-            PreparedStatement pstmt = this.connect.prepareStatement("INSERT INTO SEANCE VALUES(?,?,?,?,?,?,?)");
-
-            //On affiche la requête exécutée
-            System.out.println(pstmt.toString());
-
+            Statement statement = this.connect.createStatement();
+            int semaine = obj.getSemaine();
+            java.util.Date date= obj.getDate();
+            Time heure_d = obj.getHeureDebut(); 
+            Time heure_f = obj.getHeureFin(); 
+            int etat = obj.getEtat();
+            int id_cours = obj.getIdCours();
+            int id_type = obj.getIdType();
+            System.out.println("La date" +date);
+            int insertCount = statement.executeUpdate("INSERT INTO seance(SEMAINE, DATE, HEURE_DEBUT, HEURE_FIN, ETAT, ID_COURS, ID_TYPE) VALUES('"+semaine+"', '"+date+"','"+heure_d+"','"+heure_f+"','"+etat+"','"+id_cours+"','"+id_type+"')");
             System.out.println("Inserted test_value successfully : " + insertCount);
+            
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -136,6 +113,6 @@ public class SeanceDAO extends DAO<Seance> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return salle;
+        return seance;
     }
 }
