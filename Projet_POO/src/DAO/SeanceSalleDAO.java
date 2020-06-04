@@ -31,7 +31,7 @@ public class SeanceSalleDAO extends DAO<SeanceSalle>{
             int id_salle = sc.nextInt();
             
 
-            int insertCount = statement.executeUpdate("INSERT INTO seance_salle VALUES('" +id_seance+ "','"+id_salle+"')");
+            int insertCount = statement.executeUpdate("INSERT INTO seance_salles VALUES('" +id_seance+ "','"+id_salle+"')");
 
             System.out.println("Inserted test_value successfully : " + insertCount);
         } catch (Exception ex) {
@@ -47,7 +47,7 @@ public class SeanceSalleDAO extends DAO<SeanceSalle>{
             int id_salle = obj.getIdSalle();
             int id_seance = obj.getIdSeance();
 
-            int insertCount = statement.executeUpdate("INSERT INTO seance_salle VALUES('" +id_seance+ "','"+id_salle+"')");
+            int insertCount = statement.executeUpdate("UPDATE seance_enseignants SET ID_SALLE='" + id_salle + "' WHERE ID_SEANCE='" + id_seance + "' ");
 
             System.out.println("Inserted test_value successfully : " + insertCount);
         } catch (Exception ex) {
@@ -59,7 +59,7 @@ public class SeanceSalleDAO extends DAO<SeanceSalle>{
     @Override
     public boolean supprimer(SeanceSalle obj){
         try {
-            PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance_salle WHERE ID=?");
+            PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance_salles WHERE ID=?");
             st.setInt(1, obj.getIdSeance());
             st.executeUpdate();
         } catch (Exception ex) {
@@ -75,7 +75,7 @@ public class SeanceSalleDAO extends DAO<SeanceSalle>{
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM seance_salle WHERE ID = " + id_s);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM seance_salles WHERE ID_SEANCE = " + id_s);
             if (result.first()) {
                 seanceSal = new SeanceSalle(
                         id_s,

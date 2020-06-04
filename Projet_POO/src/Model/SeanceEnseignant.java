@@ -23,4 +23,9 @@ public class SeanceEnseignant {
     public int getIdEnseignant(){return id_enseignant;}
     
     public void setIdEnseignant(int id_e){id_enseignant=id_e;}
+    
+    @Override
+    public String toString(){
+        return "Seance Enseigant Id: "+id_seance+". Id enseignant en charge: "+id_enseignant;
+    }
 }

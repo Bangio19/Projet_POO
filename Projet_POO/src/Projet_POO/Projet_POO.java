@@ -12,7 +12,7 @@ import java.sql.*;
 import Projet_POO.DBConnect;
 import java.text.*;
 
- *
+ /*
  * @author Bauti
  */
 public class Projet_POO {
@@ -47,6 +47,7 @@ public class Projet_POO {
         //DAO<Seance> SeanceDao= new SeanceDAO(connect);
         //DAO<Promotion> PromotionDao= new PromotionDAO(connect);
         //int id = 3;
+
         /*
         Scanner sc = new Scanner(System.in);
         System.out.println("la semaine : ");
@@ -80,12 +81,13 @@ public class Projet_POO {
             Logger.getLogger(SeanceDAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
 */
+
         
         System.out.println("ENseignant Id: "+prof.getId());
         System.out.println("enseignnant cours: "+prof.getCours());
 
         
-      
+
     }
     
 }
