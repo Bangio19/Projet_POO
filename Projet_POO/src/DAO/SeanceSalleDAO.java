@@ -12,12 +12,14 @@ import java.util.Scanner;
  *
  * @author Bauti
  */
-public class SeanceSalleDAO extends DAO<SeanceSalle>{
+public class SeanceSalleDAO {
+    private Connection connect;
+
     public SeanceSalleDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(SeanceSalle obj) {
         
         Scanner sc = new Scanner(System.in);
@@ -40,7 +42,7 @@ public class SeanceSalleDAO extends DAO<SeanceSalle>{
         return false;
     }
     
-    @Override
+      
     public boolean modifier(SeanceSalle obj){
         try {
             Statement statement = this.connect.createStatement();
@@ -56,7 +58,7 @@ public class SeanceSalleDAO extends DAO<SeanceSalle>{
         return false;
     }
     
-    @Override
+      
     public boolean supprimer(SeanceSalle obj){
         try {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance_salles WHERE ID=?");
@@ -68,7 +70,7 @@ public class SeanceSalleDAO extends DAO<SeanceSalle>{
         return false;
     }
     
-    @Override
+      
     public SeanceSalle trouver(int id_s){
         SeanceSalle seanceSal = null;
 

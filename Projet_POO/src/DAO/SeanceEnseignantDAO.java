@@ -13,13 +13,15 @@ import java.util.Scanner;
  *
  * @author Bauti
  */
-public class SeanceEnseignantDAO extends DAO<SeanceEnseignant> {
+public class SeanceEnseignantDAO  {
+
+    private Connection connect;
 
     public SeanceEnseignantDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(SeanceEnseignant obj) {
 
         Scanner sc = new Scanner(System.in);
@@ -41,7 +43,7 @@ public class SeanceEnseignantDAO extends DAO<SeanceEnseignant> {
         return false;
     }
 
-    @Override
+      
     public boolean modifier(SeanceEnseignant obj) {
         try {
             Statement statement = this.connect.createStatement();
@@ -58,11 +60,12 @@ public class SeanceEnseignantDAO extends DAO<SeanceEnseignant> {
         return false;
     }
 
-    @Override
+      
     public boolean supprimer(SeanceEnseignant obj) {
         try {
-            PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance_enseignants WHERE ID_SEANCE=?");
+            PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance_enseignants WHERE ID_SEANCE=? AND ID_ENSEIGNANT=?");
             st.setInt(1, obj.getIdSeance());
+            st.setInt(2, obj.getIdEnseignant());
             st.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -70,7 +73,7 @@ public class SeanceEnseignantDAO extends DAO<SeanceEnseignant> {
         return false;
     }
 
-    @Override
+      
     public SeanceEnseignant trouver(int id_s) {
         SeanceEnseignant seanceEns = null;
 

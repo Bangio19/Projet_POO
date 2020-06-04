@@ -11,31 +11,33 @@ import java.util.*;
  *
  * @author Bauti
  */
-public class CoursDAO extends DAO<Cours>{
+public class CoursDAO {
+    private Connection connect;
+
     public CoursDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(Cours obj) {
         //Reste à modifier
         
         return false;
     }
     
-    @Override
+      
     public boolean supprimer(Cours obj) {
         
         return false;
     }
 
-    @Override
+      
     public boolean modifier(Cours obj) 
     {
         return false;
     }
 
-    @Override
+      
     public Cours trouver(int id) {
         Cours cours = null;
 

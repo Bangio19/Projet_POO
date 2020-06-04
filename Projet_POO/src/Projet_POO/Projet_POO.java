@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Projet_POO;
-import Controller.Recherche;
+import Controller.*;
 import DAO.*;
 import Model.*;
 import java.util.*;
@@ -31,11 +31,16 @@ public class Projet_POO {
        
         Connection connect=conn.getCon();
         
-        int id=16;
+        int id=1;
         //SalleDAO salleDao=new SalleDAO(connect);
-        DAO<Enseignant> enseignantDao= new EnseignantDAO(connect);
-
-        Enseignant prof= enseignantDao.trouver(id);
+       SeanceEnseignantDAO tmpEns = new SeanceEnseignantDAO(connect);
+       SeanceEnseignant seanceEns = tmpEns.trouver(id);
+       
+       SeanceGroupeDAO tmpGrp = new SeanceGroupeDAO(connect);
+       SeanceGroupe seancegrp = tmpGrp.trouver(id);
+       
+       Mise_a_jour maj = new Mise_a_jour();
+       maj.enlever_groupe_et_enseignant_a_seance(seancegrp, seanceEns);
        /* DAO<Groupe> groupeDao= new GroupeDAO(connect);
         
         //int id = 3;
@@ -87,9 +92,6 @@ public class Projet_POO {
         }        
 */
 
-        
-        System.out.println("ENseignant Id: "+prof.getId());
-        System.out.println("enseignnant cours: "+prof.getCours());
 
         
 

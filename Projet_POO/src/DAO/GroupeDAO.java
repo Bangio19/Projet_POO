@@ -12,30 +12,32 @@ import java.util.*;
  *
  * @author adrie
  */
-public class GroupeDAO extends DAO<Groupe>{
+public class GroupeDAO{
+    private Connection connect;
+
     public GroupeDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(Groupe obj) {
         
         return false;
     }
     
-    @Override
+      
     public boolean supprimer(Groupe obj) {
         
         return false;
     }
 
-    @Override
+      
     public boolean modifier(Groupe obj) 
     {
         return false;
     }
 
-    @Override
+      
     public Groupe trouver(int id) {
         Groupe groupe = null;
 

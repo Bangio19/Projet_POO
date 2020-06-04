@@ -9,41 +9,39 @@ import java.sql.*;
 import java.util.*;
 import Model.Seance;
 
-
-
 /**
  *
  * @author Bauti
  */
-public class SeanceDAO extends DAO<Seance> {
+public class SeanceDAO {
+
+   private Connection connect = null;
 
     public SeanceDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
     public boolean creer(Seance obj) {
 
         try {
             Statement statement = this.connect.createStatement();
             int semaine = obj.getSemaine();
-            java.util.Date date= obj.getDate();
-            Time heure_d = obj.getHeureDebut(); 
-            Time heure_f = obj.getHeureFin(); 
+            java.util.Date date = obj.getDate();
+            Time heure_d = obj.getHeureDebut();
+            Time heure_f = obj.getHeureFin();
             int etat = obj.getEtat();
             int id_cours = obj.getIdCours();
             int id_type = obj.getIdType();
-            System.out.println("La date" +date);
-            int insertCount = statement.executeUpdate("INSERT INTO seance(SEMAINE, DATE, HEURE_DEBUT, HEURE_FIN, ETAT, ID_COURS, ID_TYPE) VALUES('"+semaine+"', '"+date+"','"+heure_d+"','"+heure_f+"','"+etat+"','"+id_cours+"','"+id_type+"')");
+            System.out.println("La date" + date);
+            int insertCount = statement.executeUpdate("INSERT INTO seance(SEMAINE, DATE, HEURE_DEBUT, HEURE_FIN, ETAT, ID_COURS, ID_TYPE) VALUES('" + semaine + "', '" + date + "','" + heure_d + "','" + heure_f + "','" + etat + "','" + id_cours + "','" + id_type + "')");
             System.out.println("Inserted test_value successfully : " + insertCount);
-            
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return false;
     }
 
-    @Override
     public boolean supprimer(Seance obj) {
         try {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance WHERE ID=?");
@@ -55,7 +53,6 @@ public class SeanceDAO extends DAO<Seance> {
         return false;
     }
 
-    @Override
     public boolean modifier(Seance obj) {
 //        Scanner sc=new Scanner(System.in);
 //        String NOM=obj.getNom();
@@ -86,12 +83,21 @@ public class SeanceDAO extends DAO<Seance> {
         return false;
     }
 
-    public boolean modifier_seance(Seance obj)
-    {
-        
+    public boolean modifierEtat(Seance obj, int etat) {
+
+        try {
+            Statement statement = this.connect.createStatement();
+            int id = obj.getId();
+
+            int insertCount = statement.executeUpdate("UPDATE seance SET ETAT='" + etat + "' WHERE ID='" + id + "'");
+
+            System.out.println("Inserted test_value successfully : " + insertCount);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return false;
     }
-    
-    @Override
+
     public Seance trouver(int id) {
         Seance seance = null;
 

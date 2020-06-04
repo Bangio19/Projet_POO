@@ -13,12 +13,14 @@ import java.util.Scanner;
  *
  * @author Bauti
  */
-public class SiteDAO extends DAO<Site>{
+public class SiteDAO {
+    private Connection connect;
+
     public SiteDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(Site obj) {
         //Reste à modifier
         
@@ -36,7 +38,7 @@ public class SiteDAO extends DAO<Site>{
         return false;
     }
 
-    @Override
+      
     public boolean supprimer(Site obj) {
         try {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM site WHERE ID=?");
@@ -48,14 +50,14 @@ public class SiteDAO extends DAO<Site>{
         return false;
     }
 
-    @Override
+      
     public boolean modifier(Site obj) {
 
 
         return false;
     }
 
-    @Override
+      
     public Site trouver(int id) {
         Site site = null;
 

@@ -13,13 +13,15 @@ import java.util.*;
  *
  * @author Bauti
  */
-public class PromotionDAO extends DAO<Promotion>{
+public class PromotionDAO {
     
+    private Connection connect;
+
     public PromotionDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(Promotion obj) {
         try {
             Statement statement = this.connect.createStatement();
@@ -34,19 +36,19 @@ public class PromotionDAO extends DAO<Promotion>{
         return false;
     }
     
-    @Override
+      
     public boolean supprimer(Promotion obj) {
         
         return false;
     }
 
-    @Override
+      
     public boolean modifier(Promotion obj) 
     {
         return false;
     }
 
-    @Override
+      
     public Promotion trouver(int id) {
         Promotion promo = null;
 

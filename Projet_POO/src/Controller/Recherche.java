@@ -23,49 +23,63 @@ public class Recherche {
     
     public void consulter_cours_enseignant(Enseignant prof, int semaine)
     {
-        
-        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon(); 
+
+        SeanceDAO SeanceDao = new SeanceDAO(connect);
  
     }
     
     public void consulter_cours_etudiant(Etudiant eleve, int semaine)
     {
-        
-        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon(); 
+
+        SeanceDAO SeanceDao = new SeanceDAO(connect);
  
     }   
     public void consulter_cours_annule_etudiant(Etudiant eleve, int semaine)
     {
-        
-        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon(); 
+
+        SeanceDAO SeanceDao = new SeanceDAO(connect);
  
     } 
     
     public void consulter_cours_groupe(Groupe grp, int semaine)
     {
-        
-        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon(); 
+
+        SeanceDAO SeanceDao = new SeanceDAO(connect);
  
     } 
     
     public void consulter_cours_promo(Promotion promo, int semaine)
     {
-        
-        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon(); 
+
+        SeanceDAO SeanceDao = new SeanceDAO(connect);
  
     } 
     
     public void consulter_cours_salle(Salle salle, int semaine)
     {
-        
-        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon(); 
+
+        SeanceDAO SeanceDao = new SeanceDAO(connect);
  
     } 
     
     public void recapitulatif_cours_enseignant(Enseignant prof, java.util.Date d_debut, java.util.Date d_fin)
     {
-        
-        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon(); 
+
+        SeanceDAO SeanceDao = new SeanceDAO(connect);
  
     } 
     

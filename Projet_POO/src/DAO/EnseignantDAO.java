@@ -13,32 +13,34 @@ import java.util.*;
  *
  * @author Bauti
  */
-public class EnseignantDAO extends DAO<Enseignant>{
+public class EnseignantDAO {
     
+    private Connection connect;
+
     public EnseignantDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(Enseignant obj) {
         //Reste à modifier
         
         return false;
     }
     
-    @Override
+      
     public boolean supprimer(Enseignant obj) {
         
         return false;
     }
 
-    @Override
+      
     public boolean modifier(Enseignant obj) 
     {
         return false;
     }
 
-    @Override
+      
     public Enseignant trouver(int id) {
         Enseignant enseignant = null;
 

@@ -14,13 +14,14 @@ import java.util.Scanner;
  *
  * @author Bauti
  */
-public class SalleDAO extends DAO<Salle> {
+public class SalleDAO {
+
+    private Connection connect;
 
     public SalleDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
     public boolean creer(Salle obj) {
         //Reste à modifier
         try {
@@ -37,7 +38,6 @@ public class SalleDAO extends DAO<Salle> {
         return false;
     }
 
-    @Override
     public boolean supprimer(Salle obj) {
         try {
             Statement statement = this.connect.createStatement();
@@ -51,7 +51,6 @@ public class SalleDAO extends DAO<Salle> {
         return false;
     }
 
-    @Override
     public boolean modifier(Salle obj) {
 //        Scanner sc=new Scanner(System.in);
 //        String NOM=obj.getNom();
@@ -82,7 +81,6 @@ public class SalleDAO extends DAO<Salle> {
         return false;
     }
 
-    @Override
     public Salle trouver(int id) {
         Salle salle = null;
 

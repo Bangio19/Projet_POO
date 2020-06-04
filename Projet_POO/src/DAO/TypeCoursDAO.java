@@ -12,12 +12,14 @@ import java.util.Scanner;
  *
  * @author Bauti
  */
-public class TypeCoursDAO extends DAO<TypeCours> {
+public class TypeCoursDAO {
+    private Connection connect;
+
     public TypeCoursDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(TypeCours obj) {
         //Reste à modifier
        // TODO : Vider la méthode
@@ -34,7 +36,7 @@ public class TypeCoursDAO extends DAO<TypeCours> {
         return false;
     }
 
-    @Override
+      
     public boolean supprimer(TypeCours obj) {
         try {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM type_cours WHERE ID=?");
@@ -46,7 +48,7 @@ public class TypeCoursDAO extends DAO<TypeCours> {
         return false;
     }
 
-    @Override
+      
     public boolean modifier(TypeCours obj) {
         // TODO : vider la méthode
         
@@ -79,7 +81,7 @@ public class TypeCoursDAO extends DAO<TypeCours> {
         return false;
     }
 
-    @Override
+      
     public TypeCours trouver(int id) {
         TypeCours site = null;
 

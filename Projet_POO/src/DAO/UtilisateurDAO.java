@@ -13,12 +13,14 @@ import java.util.Scanner;
  *
  * @author Bauti
  */
-public class UtilisateurDAO extends DAO<Utilisateur>{
+public class UtilisateurDAO {
+    private Connection connect;
+
     public UtilisateurDAO(Connection conn) {
-        super(conn);
+        this.connect = conn;
     }
 
-    @Override
+      
     public boolean creer(Utilisateur obj) {
         //Reste à modifier
 //        try {
@@ -36,7 +38,7 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
        return false;
     }
 
-    @Override
+      
     public boolean supprimer(Utilisateur obj) {
         try {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM utilisateur WHERE ID=?");
@@ -48,12 +50,12 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
         return false;
     }
 
-    @Override
+      
     public boolean modifier(Utilisateur obj) {
         return false;
     }
 
-    @Override
+      
     public Utilisateur trouver(int id) {
         Utilisateur user = null;
 
