@@ -86,6 +86,11 @@ public class SeanceDAO extends DAO<Seance> {
         return false;
     }
 
+    public boolean modifier_seance(Seance obj)
+    {
+        
+    }
+    
     @Override
     public Seance trouver(int id) {
         Seance seance = null;
