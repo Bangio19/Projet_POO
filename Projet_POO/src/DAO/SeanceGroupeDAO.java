@@ -31,7 +31,7 @@ public class SeanceGroupeDAO extends DAO<SeanceGroupe>{
             int id_groupe = sc.nextInt();
             
 
-            int insertCount = statement.executeUpdate("INSERT INTO seance_groupe VALUES('" +id_seance+ "','"+id_groupe+"')");
+            int insertCount = statement.executeUpdate("INSERT INTO seance_groupes VALUES('" +id_seance+ "','"+id_groupe+"')");
 
             System.out.println("Inserted test_value successfully : " + insertCount);
         } catch (Exception ex) {
@@ -47,7 +47,7 @@ public class SeanceGroupeDAO extends DAO<SeanceGroupe>{
             int id_groupe = obj.getIdGroupe();
             int id_seance = obj.getIdSeance();
 
-            int insertCount = statement.executeUpdate("INSERT INTO seance_groupe VALUES('" +id_seance+ "','"+id_groupe+"')");
+            int insertCount = statement.executeUpdate("UPDATE seance_groupes SET ID_GROUPE='"+id_groupe+"' WHERE ID_SEANCE='" +id_seance+ "'");
 
             System.out.println("Inserted test_value successfully : " + insertCount);
         } catch (Exception ex) {
@@ -59,7 +59,7 @@ public class SeanceGroupeDAO extends DAO<SeanceGroupe>{
     @Override
     public boolean supprimer(SeanceGroupe obj){
         try {
-            PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance_groupe WHERE ID=?");
+            PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance_groupes WHERE ID=?");
             st.setInt(1, obj.getIdSeance());
             st.executeUpdate();
         } catch (Exception ex) {
@@ -75,7 +75,7 @@ public class SeanceGroupeDAO extends DAO<SeanceGroupe>{
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM seance_groupe WHERE ID = " + id_s);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM seance_groupes WHERE ID_SEANCE = " + id_s);
             if (result.first()) {
                 seanceGr = new SeanceGroupe(
                         id_s,

@@ -55,43 +55,69 @@ public class Projet_POO {
         //DAO<Promotion> PromotionDao= new PromotionDAO(connect);
         //int id = 3;
         
-        Scanner sc = new Scanner(System.in);
-        System.out.println("la semaine : ");
-        int id = sc.nextInt();
-        System.out.println("la date : ");
-        
-
-        String dateee = sc.next();
-        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-        try {
-            java.util.Date date = format.parse(dateee);
-            java.sql.Date dateDB = new java.sql.Date(date.getTime());
-        
-            System.out.println("la heure debut : ");
-            String heureD = sc.next();
-            Time heure_d =  Time.valueOf(heureD);
-        
-        System.out.println("la heure fin : ");
-        String heureF = sc.next();
-            Time heure_f =  Time.valueOf(heureF);
-        System.out.println("la etat : ");
-        int etat = sc.nextInt();
-        System.out.println("la id_cours : ");
-        int id_cours = sc.nextInt();
-        System.out.println("la id_type : ");
-        int id_type = sc.nextInt();
-        Seance nouveau = new Seance(1,id,dateDB, heure_d, heure_f, etat, id_cours, id_type);
-        SeanceDao.creer(nouveau);
-        } 
-        catch (ParseException ex) {
-            Logger.getLogger(SeanceDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+                Scanner sc = new Scanner(System.in);
+//                System.out.println("la semaine : ");
+//                int id = sc.nextInt();
+//                System.out.println("la date : ");
+//
+//
+//                String dateee = sc.next();
+//                SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+//                try {
+//                    java.util.Date date = format.parse(dateee);
+//                    java.sql.Date dateDB = new java.sql.Date(date.getTime());
+//
+//                    System.out.println("la heure debut : ");
+//                    String heureD = sc.next();
+//                    Time heure_d =  Time.valueOf(heureD);
+//
+//                System.out.println("la heure fin : ");
+//                String heureF = sc.next();
+//                    Time heure_f =  Time.valueOf(heureF);
+//                System.out.println("la etat : ");
+//                int etat = sc.nextInt();
+//                System.out.println("la id_cours : ");
+//                int id_cours = sc.nextInt();
+//                System.out.println("la id_type : ");
+//                int id_type = sc.nextInt();
+//                Seance nouveau = new Seance(1,id,dateDB, heure_d, heure_f, etat, id_cours, id_type);
+//                SeanceDao.creer(nouveau);
+//                } 
+//                catch (ParseException ex) {
+//                    Logger.getLogger(SeanceDAO.class.getName()).log(Level.SEVERE, null, ex);
+//                }        
                
         //Promotion promo = new Promotion(1,id);
         //PromotionDao.creer(promo);
         
         //System.out.println("Salle Id: "+promo.getId());
         //System.out.println("Salle Nom: "+promo.getNom());
+        
+        
+        DAO<SeanceEnseignant> seanceEnsDAO = new SeanceEnseignantDAO(connect);
+        int id=2;
+        String stk;
+        
+        SeanceEnseignant obj = seanceEnsDAO.trouver(id);
+        stk = obj.toString();
+        System.out.println(stk); 
+        
+        System.out.println("Modifications: Changer id enseignant");
+        id = sc.nextInt();
+        obj.setIdEnseignant(id);
+        System.out.println("  "+obj.getIdSeance());
+        System.out.println("  "+obj.getIdEnseignant());
+        seanceEnsDAO.modifier(obj);
+        
+        SeanceEnseignant obj2 = seanceEnsDAO.trouver(id);
+        
+        System.out.println("Nouvelle seance modifiee:");
+        System.out.println("  "+obj2.getIdSeance());
+        System.out.println("  "+obj2.getIdEnseignant());
+        
+        System.out.println("Ca va supprimer ");
+        int ok=sc.nextInt();
+        seanceEnsDAO.supprimer(obj2);
         
     }
     
