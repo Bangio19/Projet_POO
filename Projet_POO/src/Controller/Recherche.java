@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package Controller;
-import Model.*;
+import Projet_POO.*;
 import DAO.*;
-import Projet_POO.DBConnect;
+import Model.*;
 import java.util.*;
 import java.sql.*;
+import Projet_POO.DBConnect;
+import java.text.*;
 
 
 /**
@@ -16,21 +18,55 @@ import java.sql.*;
  * @author adrie
  */
 public class Recherche {
-    protected Connection connect=null;
     //ArrayList<Seance> listSeance= new ArrayList<Seance>();
     
-    public Recherche(Connection conn){
-        this.connect=conn;
+    
+    public void consulter_cours_enseignant(Enseignant prof, int semaine)
+    {
+        
+        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+ 
     }
     
-    public void consulter_cours_enseignant(Enseignant prof)
+    public void consulter_cours_etudiant(Etudiant eleve, int semaine)
     {
-        DBConnect conn = new DBConnect();
-       
-        Connection connect=conn.getCon(); 
         
-        //DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+ 
+    }   
+    public void consulter_cours_annule_etudiant(Etudiant eleve, int semaine)
+    {
         
+        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+ 
+    } 
+    
+    public void consulter_cours_groupe(Groupe grp, int semaine)
+    {
         
-    }
+        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+ 
+    } 
+    
+    public void consulter_cours_promo(Promotion promo, int semaine)
+    {
+        
+        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+ 
+    } 
+    
+    public void consulter_cours_salle(Salle salle, int semaine)
+    {
+        
+        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+ 
+    } 
+    
+    public void recapitulatif_cours_enseignant(Enseignant prof, java.util.Date d_debut, java.util.Date d_fin)
+    {
+        
+        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+ 
+    } 
+    
 }

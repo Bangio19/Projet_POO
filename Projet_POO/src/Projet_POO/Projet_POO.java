@@ -7,20 +7,11 @@ package Projet_POO;
 import Controller.Recherche;
 import DAO.*;
 import Model.*;
-import java.sql.Connection;
-import java.text.ParseException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.*;
-import java.util.*;
-import Model.Seance;
 import Projet_POO.DBConnect;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;/**
+import java.text.*;
+
  *
  * @author Bauti
  */
