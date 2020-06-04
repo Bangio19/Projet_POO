@@ -11,13 +11,18 @@ import java.util.*;
 import java.sql.*;
 import Projet_POO.DBConnect;
 import java.text.*;
+
 /*
  *
+=======
+
+ /*
+>>>>>>> 7e5c9b9b1d9702ce06a7fb7a700892db0b540ffa
  * @author Bauti
  */
 public class Projet_POO {
 
-    /**
+    /*
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -47,6 +52,7 @@ public class Projet_POO {
         //DAO<Seance> SeanceDao= new SeanceDAO(connect);
         //DAO<Promotion> PromotionDao= new PromotionDAO(connect);
         //int id = 3;
+
         /*
         Scanner sc = new Scanner(System.in);
         System.out.println("la semaine : ");
@@ -80,12 +86,13 @@ public class Projet_POO {
             Logger.getLogger(SeanceDAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
 */
+
         
         System.out.println("ENseignant Id: "+prof.getId());
         System.out.println("enseignnant cours: "+prof.getCours());
 
         
-      
+
     }
     
 }

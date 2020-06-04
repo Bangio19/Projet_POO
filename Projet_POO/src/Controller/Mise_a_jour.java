@@ -81,6 +81,8 @@ public class Mise_a_jour {
         DBConnect conn = new DBConnect();
         Connection connect=conn.getCon();        
         DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        
+        int etat=seance.getEtat();
  
     }
     public void valider_seance(Seance seance)
