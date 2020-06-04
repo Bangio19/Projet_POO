@@ -8,12 +8,8 @@ package DAO;
 import java.sql.*;
 import java.util.*;
 import Model.Seance;
-import Projet_POO.DBConnect;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+
 
 /**
  *
@@ -41,7 +37,7 @@ public class SeanceDAO extends DAO<Seance> {
             int insertCount = statement.executeUpdate("INSERT INTO seance(SEMAINE, DATE, HEURE_DEBUT, HEURE_FIN, ETAT, ID_COURS, ID_TYPE) VALUES('"+semaine+"', '"+date+"','"+heure_d+"','"+heure_f+"','"+etat+"','"+id_cours+"','"+id_type+"')");
             System.out.println("Inserted test_value successfully : " + insertCount);
             
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
         return false;
@@ -53,7 +49,7 @@ public class SeanceDAO extends DAO<Seance> {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance WHERE ID=?");
             st.setInt(1, obj.getId());
             st.executeUpdate();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
         return false;
