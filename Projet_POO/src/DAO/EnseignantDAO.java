@@ -45,7 +45,7 @@ public class EnseignantDAO extends DAO<Enseignant>{
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM promotion WHERE ID = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM enseignant WHERE ID_UTILISATEUR = " + id);
             if (result.first()) 
             {
                 enseignant = new Enseignant(result.getInt("ID_UTILISATEUR"), result.getInt("ID_COURS"));

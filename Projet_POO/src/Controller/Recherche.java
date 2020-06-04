@@ -8,23 +8,29 @@ import Model.*;
 import DAO.*;
 import Projet_POO.DBConnect;
 import java.util.*;
-import java.sql.Connection;
+import java.sql.*;
+
 
 /**
  *
  * @author adrie
  */
 public class Recherche {
+    protected Connection connect=null;
+    //ArrayList<Seance> listSeance= new ArrayList<Seance>();
     
-    ArrayList<Seance> listSeance= new ArrayList<Seance>();
+    public Recherche(Connection conn){
+        this.connect=conn;
+    }
     
-    public void consulter_cours_enseignant(Enseignant prof,int semaine)
+    public void consulter_cours_enseignant(Enseignant prof)
     {
         DBConnect conn = new DBConnect();
        
         Connection connect=conn.getCon(); 
         
-        DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        //DAO<Seance> SeanceDao = new SeanceDAO(connect);
+        
         
     }
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Projet_POO;
+import Controller.Recherche;
 import DAO.*;
 import Model.*;
 import java.sql.Connection;
@@ -34,10 +35,13 @@ public class Projet_POO {
        
         Connection connect=conn.getCon();
         
-        /*DAO<Salle> salleDao= new SalleDAO(connect);
-        int id=2;
+        //DAO<Enseignant> enseignantDao= new EnseignantDAO(connect);
+        int id=16;
         //SalleDAO salleDao=new SalleDAO(connect);
-        Salle salle=salleDao.trouver(id);*/
+        Enseignant prof=new Enseignant(id);
+        
+        Recherche a;
+        a.consulter_cours_enseignant(prof);
        /* DAO<Groupe> groupeDao= new GroupeDAO(connect);
         
         //int id = 3;
@@ -51,10 +55,10 @@ public class Projet_POO {
         Groupe grp = new Groupe(1,nom, id_promo);
         groupeDao.creer(grp);*/
         
-        DAO<Seance> SeanceDao= new SeanceDAO(connect);
+        //DAO<Seance> SeanceDao= new SeanceDAO(connect);
         //DAO<Promotion> PromotionDao= new PromotionDAO(connect);
         //int id = 3;
-        
+        /*
         Scanner sc = new Scanner(System.in);
         System.out.println("la semaine : ");
         int id = sc.nextInt();
@@ -86,13 +90,14 @@ public class Projet_POO {
         catch (ParseException ex) {
             Logger.getLogger(SeanceDAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
-               
+               */
         //Promotion promo = new Promotion(1,id);
         //PromotionDao.creer(promo);
         
-        //System.out.println("Salle Id: "+promo.getId());
-        //System.out.println("Salle Nom: "+promo.getNom());
+        System.out.println("ENseignant Id: "+prof.getId());
+        System.out.println("enseignnant cours: "+prof.getCours());
         
+      
     }
     
 }
