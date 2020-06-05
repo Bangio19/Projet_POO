@@ -31,13 +31,27 @@ public class Mise_a_jour {
         SeanceDAO seanceDAO = new SeanceDAO(connect);
  
     }
-    public void modif_cours_dans_seance(Cours cours, Seance seance)
+    
+    public void modif_nom_cours_dans_seance(Cours cours, Seance seance)
     {
         DBConnect conn = new DBConnect();
         Connection connect=conn.getCon();        
         SeanceDAO seanceDAO = new SeanceDAO(connect);
  
+        seance.setIdCours(cours.getId());
+        seanceDAO.modifier(seance);
     }
+    
+    public void modif_type_cours_dans_seance(TypeCours typeCours, Seance seance)
+    {
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon();        
+        SeanceDAO seanceDAO = new SeanceDAO(connect);
+ 
+        seance.setIdType(typeCours.getId());
+        seanceDAO.modifier(seance);
+    }
+    
     public void affecter_salle_a_seance(Salle salle, Seance seance)
     {
         DBConnect conn = new DBConnect();
@@ -83,7 +97,7 @@ public class Mise_a_jour {
         SeanceDAO seanceDAO = new SeanceDAO(connect);
         
         seance.setEtat(0);
-        seanceDAO.modifierEtat(seance,0);
+        seanceDAO.modifier(seance);
  
     }
     public void valider_seance(Seance seance)
@@ -93,7 +107,7 @@ public class Mise_a_jour {
         SeanceDAO seanceDAO = new SeanceDAO(connect);
  
         seance.setEtat(1);
-        seanceDAO.modifierEtat(seance,1);
+        seanceDAO.modifier(seance);
     }
     public void enlever_groupe_a_seance(SeanceGroupe seancegrp)
     {

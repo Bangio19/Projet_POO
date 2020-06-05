@@ -78,29 +78,17 @@ public class SeanceEnseignantDAO  {
         SeanceEnseignant seanceEns = null;
 
         try {
-//            ResultSet result = this.connect.createStatement(
-//                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-//                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM seance_enseignants WHERE ID_SEANCE = " + id_s);
-//            if (result.first()) {
-//                seanceEns = new SeanceEnseignant(
-//                        id_s,
-//                        result.getInt("ID_ENSEIGNANT")
-//                );
-//                
-//                System.out.println("id seance: "+id_s);
-//                System.out.println("id seance: "+result.getInt("ID_ENSEIGNANT"));
-//            }
             PreparedStatement pst = null;
             ResultSet rs = null;
-            System.out.println("le int"+id_s);
+
             pst = this.connect.prepareStatement("select * from seance_enseignants where ID_SEANCE=? ");
             pst.setInt(1, id_s);
             rs = pst.executeQuery();
-            System.out.println("rs: "+rs.getFetchSize());
+
             if (rs.next()) {
                 seanceEns = new SeanceEnseignant( id_s, rs.getInt("ID_ENSEIGNANT")
                 );
-                System.out.println("le id enseig:"+rs.getInt("ID_ENSEIGNANT"));
+              
             }
         } catch (SQLException e) {
             e.printStackTrace();
