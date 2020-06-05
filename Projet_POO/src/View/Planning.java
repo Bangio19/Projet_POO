@@ -6,80 +6,98 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
+import DAO.SeanceDAO;
 
 /**
  *
  * @author antoi
  */
 public class Planning extends JFrame {
+    
+    private final JPanel container;
+    private final JLabel lundi, mardi, mercredi, jeudi, vendredi,h1,h2,h3,h4,h5,h6,h7; 
+            
   public Planning(){
+      super();
+      setTitle("Mon planning");
+      setSize(1600,800);
+      setLocationRelativeTo(null);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
-      this.setTitle("Mon planning");
-      this.setSize(1600,800);
-      this.setLocationRelativeTo(null);
-      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     
-     this.setContentPane(Grille());
-      
-      this.setVisible(true);
-     
-  }
-  private JPanel Grille(){
-      JPanel container = new JPanel();
-      container.setLayout(new GridLayout(9,6));
-      for(int i=0; i<54 ; i++){
-          JPanel nouveau = new JPanel();
+       container = new JPanel();
+       
+       lundi = new JLabel("Lundi");
+       mardi= new JLabel("Mardi");
+       mercredi = new JLabel("Mercredi");
+       jeudi = new JLabel("Jeudi");
+       vendredi = new JLabel("Vendredi");
+       h1= new JLabel("8h / 10h");
+       h2= new JLabel("10h15 / 11H45");
+       h3= new JLabel("12h / 13h30");
+       h4= new JLabel("13h45 / 15h15");
+       h5= new JLabel("15h30 / 17h");
+       h6= new JLabel("17h15 / 18h45");
+       h7= new JLabel("19h / 20h30");
+       
+      container.setLayout(new GridLayout(8,6));
+      for(int i=0; i<48 ; i++){
+          
+            JPanel nouveau = new JPanel();
           
           // Jour de la semaine affichage
           if(i == 1){
-              nouveau.add(new JLabel("Lundi"));
+              nouveau.add(lundi);
           }
           if(i == 2){
-              nouveau.add(new JLabel("Mardi"));
+              nouveau.add(mardi);
           }
           if(i == 3){
-              nouveau.add(new JLabel("Mercredi"));
+              nouveau.add(mercredi);
           }
           if(i == 4){
-              nouveau.add(new JLabel("Jeudi"));
+              nouveau.add(jeudi);
           }
           if(i == 5){
-              nouveau.add(new JLabel("Vendredi"));
+              nouveau.add(vendredi);
           }
           
           // Horaire affichage 
           
            if(i == 6){
-              nouveau.add(new JLabel("8h / 10h"));
+              nouveau.add(h1);
           }
           if(i == 12){
-              nouveau.add(new JLabel("10h15 / 11H45"));
+              nouveau.add(h2);
           }
           if(i == 18){
-              nouveau.add(new JLabel("12h / 13h30"));
+              nouveau.add(h3);
           }
           if(i == 24){
-              nouveau.add(new JLabel("13h45 / 15h15"));
+              nouveau.add(h4);
           }
           if(i == 30){
-              nouveau.add(new JLabel("15h30 / 17h"));
+              nouveau.add(h5);
           }
            if(i == 36){
-              nouveau.add(new JLabel("17h15 / 18h45"));
+              nouveau.add(h6);
           }
           if(i == 42){
-              nouveau.add(new JLabel("19h / 20h30"));
+              nouveau.add(h7);
           }
-          if(i == 48){
-              nouveau.add(new JLabel("20h45 / 22h15"));
-          }
+
           
           nouveau.setBorder(BorderFactory.createLineBorder(Color.black,1));
           container.add(nouveau);
-         
-      }
-       return container;
+     
+     setContentPane(container);
+      
+      setVisible(true);
+      
+     
+  }
+  
       
       
+
 }
 }

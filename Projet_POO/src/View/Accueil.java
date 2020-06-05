@@ -98,7 +98,7 @@ public class Accueil extends JFrame implements ActionListener {
              // sélection du menu en fonction du droit de l'utilisateur 
               if (droit == 1){
                 setVisible(false);
-                AdminMenu nouveau = new AdminMenu();
+                AdminMenu nouveau = new AdminMenu(NotreUtil.getId());
               }
               if (droit == 2){
                   
