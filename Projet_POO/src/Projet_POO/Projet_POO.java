@@ -38,34 +38,26 @@ public class Projet_POO {
        
         Connection connect=conn.getCon();
         
-        Mise_a_jour maj = new Mise_a_jour();
-        int id=1;
+
+       
+       
+
+        int id=2;
         //SalleDAO salleDao=new SalleDAO(connect);
-//       SeanceEnseignantDAO tmpEns = new SeanceEnseignantDAO(connect);
-//       SeanceEnseignant seanceEns = tmpEns.trouver(id);
+       EnseignantDAO ensDAO = new EnseignantDAO(connect);
+       Enseignant prof = ensDAO.trouver(16);
        
-       ///////// TEST VALIDER/ANNULER SEANCE //////////////
-//                SeanceDAO tmpSeance = new SeanceDAO(connect);
-//                Seance seance = tmpSeance.trouver(2);
-//
-//                maj.valider_seance(seance);
-       ///////////////////////////////////////////////////
+       SeanceDAO seanceDAO = new SeanceDAO(connect);
+       Seance seance = seanceDAO.trouver(4);       
        
-       ///////// TEST  Modifier le cours (son nom ou son type) dans une séance de cours ///////////
-       SeanceDAO tmpSeance = new SeanceDAO(connect);
-       Seance seance = tmpSeance.trouver(2);
-       
-       CoursDAO tmpCours = new CoursDAO(connect);
-       Cours cours = tmpCours.trouver(2);
-       
-       TypeCoursDAO tmpType = new TypeCoursDAO(connect);
-       TypeCours typeCours = tmpType.trouver(3);
-       
-       maj.modif_nom_cours_dans_seance(cours, seance);
-       maj.modif_type_cours_dans_seance(typeCours, seance);
-       ///////////////////////////////////////////////////
-       
-       
+       Mise_a_jour maj = new Mise_a_jour();
+       maj.ajouter_enseignant_a_seance(prof, seance);
+        /*for(int i=0; i<3; i++)
+        {
+            System.out.println(seanceEns.getIdSeance());
+            System.out.println(seanceEns.getIdEnseignant());
+
+        }*/
        /* DAO<Groupe> groupeDao= new GroupeDAO(connect);
         
         //int id = 3;
