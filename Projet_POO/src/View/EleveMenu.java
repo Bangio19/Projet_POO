@@ -4,11 +4,20 @@
  * and open the template in the editor.
  */
 package View;
-
+import javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author antoi
  */
-public class EleveMenu {
+public class EleveMenu extends JFrame  {
     
+       
+
+public EleveMenu(){
+    super();
+    
+    Planning plan = new Planning();
+    
+}    
 }

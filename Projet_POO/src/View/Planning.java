@@ -6,7 +6,7 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+
 /**
  *
  * @author antoi
@@ -75,8 +75,10 @@ public class Planning extends JFrame {
           }
           nouveau.setBorder(BorderFactory.createLineBorder(Color.black,1));
           container.add(nouveau);
+         
       }
+       return container;
       
       
-      return container;
+}
 }

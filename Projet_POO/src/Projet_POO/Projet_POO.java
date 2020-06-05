@@ -31,9 +31,10 @@ public class Projet_POO {
      */
     public static void main(String[] args) {
         
-       Planning plan = new Planning();
-        //Accueil acc = new Accueil();
+      // Planning plan = new Planning();
+        
         DBConnect conn = new DBConnect();
+        Accueil acc = new Accueil();
         //connect.getData();
        
         Connection connect=conn.getCon();
