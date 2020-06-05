@@ -31,16 +31,22 @@ public class Projet_POO {
        
         Connection connect=conn.getCon();
         
-        int id=1;
+        int id=2;
         //SalleDAO salleDao=new SalleDAO(connect);
-       SeanceEnseignantDAO tmpEns = new SeanceEnseignantDAO(connect);
-       SeanceEnseignant seanceEns = tmpEns.trouver(id);
+       EnseignantDAO ensDAO = new EnseignantDAO(connect);
+       Enseignant prof = ensDAO.trouver(16);
        
-       SeanceGroupeDAO tmpGrp = new SeanceGroupeDAO(connect);
-       SeanceGroupe seancegrp = tmpGrp.trouver(id);
+       SeanceDAO seanceDAO = new SeanceDAO(connect);
+       Seance seance = seanceDAO.trouver(4);       
        
        Mise_a_jour maj = new Mise_a_jour();
-       maj.enlever_groupe_et_enseignant_a_seance(seancegrp, seanceEns);
+       maj.ajouter_enseignant_a_seance(prof, seance);
+        /*for(int i=0; i<3; i++)
+        {
+            System.out.println(seanceEns.getIdSeance());
+            System.out.println(seanceEns.getIdEnseignant());
+
+        }*/
        /* DAO<Groupe> groupeDao= new GroupeDAO(connect);
         
         //int id = 3;
