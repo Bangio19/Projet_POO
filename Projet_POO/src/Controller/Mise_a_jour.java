@@ -84,11 +84,7 @@ public class Mise_a_jour {
         //EnseignantDAO profDAO = new EnseignantDAO(connect);
         SeanceEnseignantDAO seanEnsDAO = new SeanceEnseignantDAO(connect);
         
-        SeanceEnseignant newSeanEns = seanEnsDAO.trouver(Ens.getId(), seance.getId());
-                System.out.println("On a passe la methode trouve");
-        if(newSeanEns==null)
-        {
-            System.out.println("On a passe la condition if");
+        
             boolean verif = seanEnsDAO.check_libre(Ens, seance);
             System.out.println("On a passe la methode check");
             System.out.println("verif egal a :"+verif);
@@ -98,15 +94,25 @@ public class Mise_a_jour {
                 seanEnsDAO.creer(Ens, seance);
                 System.out.println("Tout s'est bien passe");
             }
-        }
- 
+        
     }
     
     public void ajouter_groupe_a_seance(Groupe grp, Seance seance)
     {
         DBConnect conn = new DBConnect();
-        Connection connect=conn.getCon();        
-        SeanceDAO seanceDAO = new SeanceDAO(connect);
+        Connection connect=conn.getCon();
+        
+        SeanceGroupeDAO seanGrpDAO = new SeanceGroupeDAO(connect);
+        //SeanceSalleDAO seanSalDAO = new SeanceSalleDAO(connect);
+        //int capacite_mini=0;
+        
+            boolean verif = seanGrpDAO.check_libre(grp, seance);
+            
+            if(verif==true)
+            {
+                seanGrpDAO.creer(grp, seance);
+                System.out.println("Tout s'est bien passe");
+            }
  
     }
     

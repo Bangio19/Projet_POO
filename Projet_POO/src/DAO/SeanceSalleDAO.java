@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Model.SeanceSalle;
+import Model.*;
 import java.sql.*;
 import java.util.Scanner;
 /**
@@ -20,17 +20,17 @@ public class SeanceSalleDAO {
     }
 
       
-    public boolean creer(SeanceSalle obj) {
+    public boolean creer(Seance seance, Salle salle) {
         
-        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in);
         try {
             Statement statement = this.connect.createStatement();
             
-            System.out.println("Saisir Id Seance");
-            int id_seance = sc.nextInt();
+            //System.out.println("Saisir Id Seance");
+            int id_seance = seance.getId();
             
-            System.out.println("Saisir Id de l'Enseignatn");
-            int id_salle = sc.nextInt();
+            //System.out.println("Saisir Id de l'Enseignatn");
+            int id_salle = salle.getId();
             
 
             int insertCount = statement.executeUpdate("INSERT INTO seance_salles VALUES('" +id_seance+ "','"+id_salle+"')");
@@ -70,7 +70,7 @@ public class SeanceSalleDAO {
         return false;
     }
     
-      
+    
     public SeanceSalle trouver(int id_s){
         SeanceSalle seanceSal = null;
 

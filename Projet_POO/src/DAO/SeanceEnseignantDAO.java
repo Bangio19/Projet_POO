@@ -8,7 +8,7 @@ package DAO;
 import Model.*;
 import java.sql.*;
 import java.util.Scanner;
-import controller.*;
+import Controller.*;
 /**
  *
  * @author Bauti
@@ -28,10 +28,10 @@ public class SeanceEnseignantDAO  {
         try {
             Statement statement = this.connect.createStatement();
 
-            System.out.println("Saisir Id Seance");
+            //System.out.println("Saisir Id Seance");
             int id_seance = seance.getId();
 
-            System.out.println("Saisir Id de l'Enseignatn");
+            //System.out.println("Saisir Id de l'Enseignatn");
             int id_enseignant = Ens.getId();
 
             int insertCount = statement.executeUpdate("INSERT INTO seance_enseignants VALUES('" + id_seance + "','" + id_enseignant + "')");
@@ -78,6 +78,7 @@ public class SeanceEnseignantDAO  {
     {
         //SeanceEnseignant seanceEns = null;
         int id_prof= prof.getId();
+        int id_seance = seance.getId();
         java.util.Date date_seance_a_verifier = seance.getDate();
         java.sql.Date dateDB = new java.sql.Date(date_seance_a_verifier.getTime());
         Time heure_debut= seance.getHeureDebut();
@@ -86,14 +87,14 @@ public class SeanceEnseignantDAO  {
             
             PreparedStatement pst = null;
             ResultSet rs = null;
-            //pst  = this.connect.prepareStatement("SELECT DATE AS date_seance, HEURE_DEBUT AS heure_debut_seance, ID_ENSEIGNANT AS id_enseignant FROM seance INNER JOIN seance_enseignants ON seance.ID = seance_enseignants.ID_SEANCE  WHERE seance_enseignants.ID_UTILISATEUR =?  AND   ");
-            pst  = this.connect.prepareStatement("SELECT ID ,ID_SEANCE, ID_ENSEIGNANT FROM seance INNER JOIN seance_enseignants  ON  seance.ID = seance_enseignants.ID_SEANCE WHERE seance_enseignants.ID_ENSEIGNANT =? AND seance.DATE =? AND seance.HEURE_DEBUT=? ");
+            pst  = this.connect.prepareStatement("SELECT * FROM seance INNER JOIN seance_enseignants  ON  seance.ID = seance_enseignants.ID_SEANCE WHERE seance_enseignants.ID_ENSEIGNANT =? AND seance_enseignants.ID_SEANCE=? AND seance.DATE =? AND seance.HEURE_DEBUT=? ");
             pst.setInt(1, id_prof);
-            pst.setDate(2, dateDB);
-            pst.setTime(3, heure_debut);
+            pst.setInt(2, id_seance);
+            pst.setDate(3, dateDB);
+            pst.setTime(4, heure_debut);
             rs = pst.executeQuery();
             if (rs.next()) {
-                System.out.print("prof a deja un cours a ce jour la et cette horaire la on ne change pas !");
+                System.out.print("prof a deja un cours a ce jour la et a cette horaire la on ne change pas !");
                 return false;
 
             }
@@ -116,17 +117,17 @@ public class SeanceEnseignantDAO  {
             ResultSet rs = null;
 
             System.out.println("le int"+id_s);
-            pst = this.connect.prepareStatement("select * from seance_enseignants where ID_SEANCE=? AND ID_ENSEIGNANT=? ");
+            pst = this.connect.prepareStatement("SELECT * FROM seance_enseignants WHERE ID_SEANCE=? AND ID_ENSEIGNANT=? ");
             pst.setInt(1, id_s);
             pst.setInt(2, id_e);
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                seanceEns = new SeanceEnseignant( id_s, rs.getInt("ID_ENSEIGNANT")
-                );
-              
-            }
-        } catch (SQLException e) {
+                seanceEns = new SeanceEnseignant( id_s, id_e);
+                return seanceEns;
+            }    
+        } 
+        catch (SQLException e) {
             e.printStackTrace();
         }
         return seanceEns;

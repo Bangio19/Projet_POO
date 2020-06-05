@@ -9,7 +9,6 @@ import DAO.*;
 import Model.*;
 import java.util.*;
 import java.sql.*;
-import Projet_POO.DBConnect;
 import java.text.*;
 
 
@@ -31,27 +30,26 @@ public class Projet_POO {
      */
     public static void main(String[] args) {
         
-       Planning plan = new Planning();
+       //Planning plan = new Planning();
         //Accueil acc = new Accueil();
-        DBConnect conn = new DBConnect();
         //connect.getData();
-       
+        DBConnect conn = new DBConnect();
         Connection connect=conn.getCon();
-        
-
        
-       
-
-        int id=2;
+        //int id=2;
         //SalleDAO salleDao=new SalleDAO(connect);
-       EnseignantDAO ensDAO = new EnseignantDAO(connect);
-       Enseignant prof = ensDAO.trouver(16);
+       GroupeDAO grpDAO = new GroupeDAO(connect);
+       Groupe grp = grpDAO.trouver(1);
+       
+       EnseignantDAO EnsDAO = new EnseignantDAO(connect);
+       Enseignant prof = EnsDAO.trouver(17);
        
        SeanceDAO seanceDAO = new SeanceDAO(connect);
-       Seance seance = seanceDAO.trouver(4);       
+       Seance seance = seanceDAO.trouver(7);       
        
        Mise_a_jour maj = new Mise_a_jour();
-       maj.ajouter_enseignant_a_seance(prof, seance);
+       maj.ajouter_groupe_a_seance(grp, seance);
+       //maj.ajouter_enseignant_a_seance(prof, seance);
         /*for(int i=0; i<3; i++)
         {
             System.out.println(seanceEns.getIdSeance());
