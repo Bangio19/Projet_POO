@@ -26,33 +26,28 @@ public class Planning extends JFrame {
   }
   private JPanel Grille(){
       JPanel container = new JPanel(new GridLayout(9,6));
-      JLabel lundi = new JLabel("Lundi");
-      JLabel mardi = new JLabel("Mardi");
-      JLabel mercredi = new JLabel("Mercredi");
-      JLabel jeudi = new JLabel("Jeudi");
-      JLabel vendredi = new JLabel("Vendredi");
       
       for(int i=0; i<54 ; i++){
           JPanel nouveau = new JPanel();
           
-          // Jour de la semaine 
+          // Jour de la semaine affichage
           if(i == 1){
-              nouveau.add(lundi);
+              nouveau.add(new JLabel("Lundi"));
           }
           if(i == 2){
-              nouveau.add(mardi);
+              nouveau.add(new JLabel("Mardi"));
           }
           if(i == 3){
-              nouveau.add(mercredi);
+              nouveau.add(new JLabel("Mercredi"));
           }
           if(i == 4){
-              nouveau.add(jeudi);
+              nouveau.add(new JLabel("Jeudi"));
           }
           if(i == 5){
-              nouveau.add(vendredi);
+              nouveau.add(new JLabel("Vendredi"));
           }
           
-          // Horaire 
+          // Horaire affichage 
           
            if(i == 6){
               nouveau.add(new JLabel("8h / 10h"));

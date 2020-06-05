@@ -20,7 +20,8 @@ public class Projet_POO {
      */
     public static void main(String[] args) {
         
-        Planning plan = new Planning();
+       Planning plan = new Planning();
+        //Accueil acc = new Accueil();
         DBConnect conn = new DBConnect();
         //connect.getData();
        
