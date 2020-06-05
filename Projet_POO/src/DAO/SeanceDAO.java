@@ -15,12 +15,13 @@ import Model.Seance;
  */
 public class SeanceDAO {
 
-   private Connection connect = null;
+    private Connection connect = null;
 
     public SeanceDAO(Connection conn) {
         this.connect = conn;
     }
 
+    //CREER UNE SEANCE
     public boolean creer(Seance obj) {
 
         try {
@@ -42,6 +43,7 @@ public class SeanceDAO {
         return false;
     }
 
+    //SUPPRIMER UNE SEANCE
     public boolean supprimer(Seance obj) {
         try {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance WHERE ID=?");
@@ -53,51 +55,41 @@ public class SeanceDAO {
         return false;
     }
 
+    //MODIFIER UNE SEANCE
     public boolean modifier(Seance obj) {
-//        Scanner sc=new Scanner(System.in);
-//        String NOM=obj.getNom();
-//        int CAPACITE, ID_SITE;
-//        
-//        System.out.println("Entrez le nouveau nom de la salle. Si pas de changement, n'entrez aucune valeur");
-//        NOM = sc.nextLine();
-//        if(NOM == "")
-//            NOM=obj.getNom();
-//        else
-//            obj.setNom(NOM);
-//       
-//        System.out.println("Entrez la nouvelle capacité de la salle");
-//        int CAPACITE = sc.nextInt();
-//        System.out.println("Entrez le nouvel ID du site de la salle");
-//        int ID_SITE = sc.nextInt();    
-//        
-//        try {
-//            Statement statement = this.connect.createStatement();
-//
-//            int insertCount = statement.executeUpdate("INSERT INTO SALLE VALUES('NOM','CAPACITE','ID_SITE')");
-//
-//            System.out.println("Inserted test_value successfully : " + insertCount);
-//        } catch (Exception ex) {
-//            System.out.println(ex);
-//        }
-
-        return false;
-    }
-
-    public boolean modifierEtat(Seance obj, int etat) {
-
         try {
-            Statement statement = this.connect.createStatement();
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
             int id = obj.getId();
-
-            int insertCount = statement.executeUpdate("UPDATE seance SET ETAT='" + etat + "' WHERE ID='" + id + "'");
-
-            System.out.println("Inserted test_value successfully : " + insertCount);
-        } catch (Exception ex) {
-            System.out.println(ex);
+            int semaine = obj.getSemaine();
+            java.util.Date date = obj.getDate();
+            Time heure_debut = obj.getHeureDebut();
+            Time heure_fin = obj.getHeureFin();
+            int etat = obj.getEtat();
+            int id_cours = obj.getIdCours();
+            int id_type = obj.getIdType();
+            
+            pst = this.connect.prepareStatement("update seance set SEMAINE=?, DATE=?, HEURE_DEBUT=?, HEURE_FIN=?, ETAT=?, ID_COURS=?, ID_TYPE=? where ID=? ");
+            pst.setInt(1,semaine);
+            pst.setDate(2, (java.sql.Date) date);
+            pst.setTime(3,heure_debut);
+            pst.setTime(4,heure_fin);
+            pst.setInt(5,etat);
+            pst.setInt(6,id_cours);
+            pst.setInt(7,id_type);
+            pst.setInt(8,id);
+            pst.executeUpdate();
+            
+            System.out.println("Inserted test_value successfully ");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return false;
     }
 
+    //TROUVER UNE SEANCE
     public Seance trouver(int id) {
         Seance seance = null;
 

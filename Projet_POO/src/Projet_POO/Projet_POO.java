@@ -21,7 +21,7 @@ import javax.swing.JFrame;
  
 
  /*
->>>>>>> 7e5c9b9b1d9702ce06a7fb7a700892db0b540ffa
+
  * @author Bauti
  */
 public class Projet_POO {
@@ -38,16 +38,34 @@ public class Projet_POO {
        
         Connection connect=conn.getCon();
         
+        Mise_a_jour maj = new Mise_a_jour();
         int id=1;
         //SalleDAO salleDao=new SalleDAO(connect);
-       SeanceEnseignantDAO tmpEns = new SeanceEnseignantDAO(connect);
-       SeanceEnseignant seanceEns = tmpEns.trouver(id);
+//       SeanceEnseignantDAO tmpEns = new SeanceEnseignantDAO(connect);
+//       SeanceEnseignant seanceEns = tmpEns.trouver(id);
        
-       SeanceGroupeDAO tmpGrp = new SeanceGroupeDAO(connect);
-       SeanceGroupe seancegrp = tmpGrp.trouver(id);
+       ///////// TEST VALIDER/ANNULER SEANCE //////////////
+//                SeanceDAO tmpSeance = new SeanceDAO(connect);
+//                Seance seance = tmpSeance.trouver(2);
+//
+//                maj.valider_seance(seance);
+       ///////////////////////////////////////////////////
        
-       Mise_a_jour maj = new Mise_a_jour();
-       maj.enlever_groupe_et_enseignant_a_seance(seancegrp, seanceEns);
+       ///////// TEST  Modifier le cours (son nom ou son type) dans une séance de cours ///////////
+       SeanceDAO tmpSeance = new SeanceDAO(connect);
+       Seance seance = tmpSeance.trouver(2);
+       
+       CoursDAO tmpCours = new CoursDAO(connect);
+       Cours cours = tmpCours.trouver(2);
+       
+       TypeCoursDAO tmpType = new TypeCoursDAO(connect);
+       TypeCours typeCours = tmpType.trouver(3);
+       
+       maj.modif_nom_cours_dans_seance(cours, seance);
+       maj.modif_type_cours_dans_seance(typeCours, seance);
+       ///////////////////////////////////////////////////
+       
+       
        /* DAO<Groupe> groupeDao= new GroupeDAO(connect);
         
         //int id = 3;
