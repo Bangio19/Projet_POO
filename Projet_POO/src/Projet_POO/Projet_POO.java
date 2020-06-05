@@ -12,9 +12,13 @@ import java.sql.*;
 import Projet_POO.DBConnect;
 import java.text.*;
 
-/*
- *
-=======
+
+
+
+import View.*;
+import javax.swing.JFrame;
+
+ 
 
  /*
 >>>>>>> 7e5c9b9b1d9702ce06a7fb7a700892db0b540ffa
@@ -26,6 +30,9 @@ public class Projet_POO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+       Planning plan = new Planning();
+        //Accueil acc = new Accueil();
         DBConnect conn = new DBConnect();
         //connect.getData();
        
@@ -54,6 +61,7 @@ public class Projet_POO {
         Groupe grp = new Groupe(1,nom, id_promo);
         groupeDao.creer(grp);*/
         
+
         //DAO<Seance> SeanceDao= new SeanceDAO(connect);
         //DAO<Promotion> PromotionDao= new PromotionDAO(connect);
         //int id = 3;
@@ -96,5 +104,7 @@ public class Projet_POO {
         
 
     }
+    
+    
     
 }

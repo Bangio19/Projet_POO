@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/src/Controller/Controller.java</file>
             <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/src/DAO/GroupeDAO.java</file>
             <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/src/Model/Salle.java</file>
@@ -26,6 +27,20 @@
             <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/src/Model/Promotion.java</file>
             <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/src/DAO/SalleDAO.java</file>
             <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/src/DAO/TypeCoursDAO.java</file>
+
+            <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/Projet_POO/src/Model/Cours.java</file>
+            
+            <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/Projet_POO/src/DAO/EnseignantDAO.java</file>
+            
+            
+            
+            
+            <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/Projet_POO/src/View/Planning.java</file>
+            <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/Projet_POO/src/View/Action.java</file>
+   
+            <file>file:/C:/wamp64/www/Projet_POO/Projet_POO/Projet_POO/src/View/Accueil.java</file>
+            
+
         </group>
     </open-files>
 </project-private>
