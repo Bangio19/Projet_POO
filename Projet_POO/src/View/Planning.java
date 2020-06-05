@@ -25,8 +25,8 @@ public class Planning extends JFrame {
      
   }
   private JPanel Grille(){
-      JPanel container = new JPanel(new GridLayout(9,6));
-      
+      JPanel container = new JPanel();
+      container.setLayout(new GridLayout(9,6));
       for(int i=0; i<54 ; i++){
           JPanel nouveau = new JPanel();
           
@@ -71,8 +71,9 @@ public class Planning extends JFrame {
               nouveau.add(new JLabel("19h / 20h30"));
           }
           if(i == 48){
-              nouveau.add(new JLabel("la faut rentrer maison"));
+              nouveau.add(new JLabel("20h45 / 22h15"));
           }
+          
           nouveau.setBorder(BorderFactory.createLineBorder(Color.black,1));
           container.add(nouveau);
          

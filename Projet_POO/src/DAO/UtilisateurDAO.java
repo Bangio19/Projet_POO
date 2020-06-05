@@ -62,7 +62,7 @@ public class UtilisateurDAO {
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE ID = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE EMAIL = '"+ id +"'");
             if (result.first()) {
                 user = new Utilisateur(
                         result.getInt("ID"),

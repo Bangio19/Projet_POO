@@ -63,7 +63,8 @@ public class Accueil extends JFrame implements ActionListener {
       menu.add(password);
       menu.add(pwd);
       
-      menu. add(connexion);
+      menu. add(connexion); 
+      
      
       
       setContentPane(menu);
@@ -88,23 +89,31 @@ public class Accueil extends JFrame implements ActionListener {
            String utilPwd = pwd.getText();
           
            //Récupération de l'utilisateur 
-          Utilisateur NotreUtil = u.trouver(utilLog);
+           
+           Utilisateur NotreUtil = u.trouver(utilLog);
           
           if (utilLog.equals(NotreUtil.getEmail()) && utilPwd.equals(NotreUtil.getMdp()) ){
               
               int droit = NotreUtil.getDroit();
+             // sélection du menu en fonction du droit de l'utilisateur 
               if (droit == 1){
                 setVisible(false);
-                EleveMenu nouveau = new EleveMenu();
+                AdminMenu nouveau = new AdminMenu();
               }
               if (droit == 2){
                   
+                  setVisible(false );
+                  ResponsableMenu nouveau = new ResponsableMenu();
               }
               if (droit == 3){
                   
+                  setVisible(false);
+                  EnseignantMenu nouveau = new EnseignantMenu();
               }
               if (droit == 4){
                   
+                  setVisible(false);
+                  EleveMenu nouveau = new EleveMenu();
               }
               
               
@@ -113,7 +122,7 @@ public class Accueil extends JFrame implements ActionListener {
               JOptionPane.showMessageDialog(null,"Mot de passe incorect");
           }
            
-           setVisible(false);
+           
        }       
        
       

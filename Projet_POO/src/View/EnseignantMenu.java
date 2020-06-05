@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package View;
-
+import javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author antoi
  */
-public class EnseignantMenu {
+public class EnseignantMenu  extends JFrame{
     
+    public EnseignantMenu (){
+        super();
+    }
 }
