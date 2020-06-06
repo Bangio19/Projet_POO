@@ -22,21 +22,22 @@ public class SeanceDAO {
     }
 
     //CREER UNE SEANCE
-    public boolean creer(Seance obj) {
+    public boolean creer(int semaine, java.util.Date date, Time heure_debut, Time heure_fin, int etat, int id_cours, int id_type) {
 
         try {
-            Statement statement = this.connect.createStatement();
-            int semaine = obj.getSemaine();
-            java.util.Date date = obj.getDate();
-            Time heure_d = obj.getHeureDebut();
-            Time heure_f = obj.getHeureFin();
-            int etat = obj.getEtat();
-            int id_cours = obj.getIdCours();
-            int id_type = obj.getIdType();
-            System.out.println("La date" + date);
-            int insertCount = statement.executeUpdate("INSERT INTO seance(SEMAINE, DATE, HEURE_DEBUT, HEURE_FIN, ETAT, ID_COURS, ID_TYPE) VALUES('" + semaine + "', '" + date + "','" + heure_d + "','" + heure_f + "','" + etat + "','" + id_cours + "','" + id_type + "')");
-            System.out.println("Inserted test_value successfully : " + insertCount);
-
+            PreparedStatement pst = null;
+            
+            pst  = this.connect.prepareStatement("INSERT INTO `seance` (`ID`, `SEMAINE`, `DATE`, `HEURE_DEBUT`, `HEURE_FIN`, `ETAT`, `ID_COURS`, `ID_TYPE`) "
+                    + "VALUES (NULL, ?, ?,?,?,?,?,?) ");
+            pst.setInt(1, semaine);
+            pst.setDate(2, (java.sql.Date) date);
+            pst.setTime(3, heure_debut);
+            pst.setTime(4, heure_fin);
+            pst.setInt(5, etat);
+            pst.setInt(6, id_cours);
+            pst.setInt(7, id_type);
+            System.out.println(pst.toString());
+            pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
         }

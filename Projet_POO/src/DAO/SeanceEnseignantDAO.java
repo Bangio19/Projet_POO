@@ -8,7 +8,7 @@ package DAO;
 import Model.*;
 import java.sql.*;
 import java.util.Scanner;
-import controller.*;
+import Controller.*;
 /**
  *
  * @author Bauti
