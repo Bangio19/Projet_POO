@@ -52,7 +52,7 @@ public class Projet_POO {
        maj.ajouter_groupe_a_seance(grp, seance);
        //maj.ajouter_enseignant_a_seance(prof, seance);
 
-        Connection connect = conn.getCon();
+        /*Connection connect = conn.getCon();
 
         int id = 2;
         //SalleDAO salleDao=new SalleDAO(connect);
@@ -88,10 +88,10 @@ public class Projet_POO {
              maj.ajouter_seance(6,dateDB, heure_d, heure_f, 0,cours.getId(), 1);
         } catch (ParseException ex) {
             Logger.getLogger(Projet_POO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DateTimeException ex) /*On vérifie que les horaires et dates entrés sont possibles */{
+        } catch (DateTimeException ex) /*On vérifie que les horaires et dates entrés sont possibles {
             System.out.println("La date ou les horaires entrés ne sont pas possibles");
         }
-
+*/
        
         
 
