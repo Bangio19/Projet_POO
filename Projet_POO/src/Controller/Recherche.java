@@ -44,7 +44,7 @@ public class Recherche {
    
  
  
-    }   
+      
     public void consulter_cours_annule_etudiant(Etudiant eleve, int semaine)
     {
         DBConnect conn = new DBConnect();

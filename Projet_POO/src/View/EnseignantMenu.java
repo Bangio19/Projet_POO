@@ -6,14 +6,18 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import Controller.Connexion;
 /**
  *
  * @author antoi
  */
-public class EnseignantMenu  extends JFrame{
+public class EnseignantMenu  extends JFrame implements ActionListener{
     
-      private final JPanel container;
+      private final JPanel container ,nord;
    private final JLabel lundi, mardi, mercredi, jeudi, vendredi,h1,h2,h3,h4,h5,h6,h7;
+   
+    private final JButton btn_emploi_du_temps, btn_recap_cours;
     
     public EnseignantMenu (int id){
         super();
@@ -22,7 +26,14 @@ public class EnseignantMenu  extends JFrame{
       setLocationRelativeTo(null);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
+      btn_emploi_du_temps = new JButton("Voir emploi du temps");
+        btn_recap_cours = new JButton("Voir le recapitulatif des cours");
+        
+        btn_emploi_du_temps.addActionListener(this);
+        btn_recap_cours.addActionListener(this);
+      
        container = new JPanel();
+       nord = new JPanel();
        
        lundi = new JLabel("Lundi");
        mardi= new JLabel("Mardi");
@@ -37,14 +48,13 @@ public class EnseignantMenu  extends JFrame{
        h6= new JLabel("17h15 / 18h45");
        h7= new JLabel("19h / 20h30");
        
+       nord.add("North", btn_emploi_du_temps);
+	nord.add("North", btn_recap_cours);
+       container.setLayout(new GridLayout(8,6));
        // On cherche une séance
        
        
-       
-       
-       
-      container.setLayout(new GridLayout(8,6));
-      for(int i=0; i<48 ; i++){
+         for(int i=0; i<48 ; i++){
           
             JPanel nouveau = new JPanel();
           
@@ -92,13 +102,33 @@ public class EnseignantMenu  extends JFrame{
           
           nouveau.setBorder(BorderFactory.createLineBorder(Color.black,1));
           container.add(nouveau);
+            
+        }
+        
+     add("North",nord);
+     add("Center",container);
+            
      
-     setContentPane(container);
       
       setVisible(true);
       
         
         
     }
+    
+     public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+
+        if(source == btn_emploi_du_temps)
+        {
+            System.out.println("Voici votre emploi du temps de la semaine 1.");
+            
+        }
+        else if(source == btn_recap_cours)
+        {
+            System.out.println("Voici votre récapitulatif de cours");
+        }
     }
+     
+     
 }
