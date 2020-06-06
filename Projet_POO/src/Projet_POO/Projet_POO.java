@@ -28,20 +28,15 @@ public class Projet_POO {
      */
     public static void main(String[] args) {
         
-       //Planning plan = new Planning();
-
-        Scanner sc = new Scanner(System.in);
-        //Planning plan = new Planning();
-      Planning plan = new Planning();
+        Accueil accueil = new Accueil();
         
-        DBConnect conn = new DBConnect();
+        accueil.setVisible(true);
 
-        //Accueil acc = new Accueil();
         //connect.getData();
        
-        Connection connect=conn.getCon();
+        //Connection connect=conn.getCon();
 
-       
+       /*
         Mise_a_jour maj = new Mise_a_jour();
         int id=1;
         //SalleDAO salleDao=new SalleDAO(connect);
@@ -63,7 +58,7 @@ public class Projet_POO {
        //Mise_a_jour maj = new Mise_a_jour();
        maj.ajouter_groupe_a_seance(grp, seance);
        //maj.ajouter_enseignant_a_seance(prof, seance);
-
+*/
 
        // int id = 2;
         //SalleDAO salleDao=new SalleDAO(connect);
