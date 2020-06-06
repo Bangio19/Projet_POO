@@ -33,11 +33,12 @@ public class Projet_POO {
         //Planning plan = new Planning();
         //Planning plan = new Planning();
 
-        //DBConnect conn = new DBConnect();
-        
+        DBConnect conn = new DBConnect();
+        Connection connect = conn.getCon();
         Accueil accueil = new Accueil();
         
         accueil.setVisible(true);
+        
 
         //connect.getData();
         /*Connection connect = conn.getCon();

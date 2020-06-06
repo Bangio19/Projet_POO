@@ -25,7 +25,6 @@ public class SeanceDAO {
     public boolean creer(int semaine, java.util.Date date, Time heure_debut, Time heure_fin, int etat, int id_cours, int id_type) throws SQLException {
         PreparedStatement pst = null;
         try {
-            
 
             pst = this.connect.prepareStatement("INSERT INTO `seance` (`ID`, `SEMAINE`, `DATE`, `HEURE_DEBUT`, `HEURE_FIN`, `ETAT`, `ID_COURS`, `ID_TYPE`) "
                     + "VALUES (NULL, ?, ?,?,?,?,?,?) ");
@@ -52,12 +51,12 @@ public class SeanceDAO {
     public boolean supprimer(Seance obj) throws SQLException {
         PreparedStatement st = null;
         try {
-           st  = this.connect.prepareStatement("DELETE FROM seance WHERE ID=?");
+            st = this.connect.prepareStatement("DELETE FROM seance WHERE ID=?");
             st.setInt(1, obj.getId());
             st.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
-        }finally {
+        } finally {
             if (st != null) {
                 st.close();
             }
@@ -66,23 +65,23 @@ public class SeanceDAO {
     }
 
     public int getId(java.util.Date date, Time heureD, Time heureF, int id_cours, int id_type) throws SQLException {
-     
+
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT ID FROM seance WHERE DATE='"+date+"' AND HEURE_DEBUT='"+heureD+"' "
-                            + "AND HEURE_FIN='"+heureF+"' AND ID_COURS='"+id_cours+"' AND ID_TYPE='"+id_type+"' ");
-            System.out.println("Infos du result: "+result);
-            
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT ID FROM seance WHERE DATE='" + date + "' AND HEURE_DEBUT='" + heureD + "' "
+                            + "AND HEURE_FIN='" + heureF + "' AND ID_COURS='" + id_cours + "' AND ID_TYPE='" + id_type + "' ");
+            System.out.println("Infos du result: " + result);
+
             if (result.next()) {
-                System.out.println("ce qu'on recup normalement "+result.getInt("ID"));
-                
+                System.out.println("ce qu'on recup normalement " + result.getInt("ID"));
+
                 return result.getInt("ID");
             }
             System.out.println("LOLOLOL");
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             this.connect.close();
         }
         return 0;
@@ -125,15 +124,41 @@ public class SeanceDAO {
     //TROUVER UNE SEANCE
     public Seance trouver(int id) {
         Seance seance = null;
-        System.out.println("l'id reçu: "+id);
-        this.connect = null;
+
+        try {
+
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM seance WHERE ID = " + id);
+            if (result.next()) {
+                seance = new Seance(
+                        id,
+                        result.getInt("Semaine"),
+                        result.getDate("DATE"),
+                        result.getTime("HEURE_DEBUT"),
+                         result.getTime("HEURE_FIN"),
+                         result.getInt("ETAT"),
+                         result.getInt("ID_COURS"),
+                         result.getInt("ID_TYPE")
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seance;
+    }
+
+    public Seance trouver(int id, Connection con) {
+        Seance seance = null;
+        System.out.println("l'id reçu: " + id);
+        this.connect = con;
         try {
             ResultSet result = null;
             Statement st = this.connect.createStatement();
-            result =  st.executeQuery("SELECT * FROM seance WHERE ID = " + id);
-            System.out.println("Infos du result: "+result);
+            result = st.executeQuery("SELECT * FROM seance WHERE ID = " + id);
+            System.out.println("Infos du result: " + result);
 
-            System.out.println("Inserted test_value successfully : " + result.next());
             if (result.next()) {
                 seance = new Seance(
                         id,
@@ -143,38 +168,9 @@ public class SeanceDAO {
                         result.getTime("HEURE_FIN"),
                         result.getInt("ETAT"),
                         result.getInt("ID_COURS"),
-                        result.getInt("ID_TYPE")     
+                        result.getInt("ID_TYPE")
                 );
-                System.out.println("Dans seance trouver:"+result.getInt("ID"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return seance;
-    }
-    
-    public Seance trouver(int id, Connection con) {
-        Seance seance = null;
-        System.out.println("l'id reçu: "+id);
-        this.connect = con;
-        try {
-            ResultSet result = null;
-            Statement st = this.connect.createStatement();
-            result =  st.executeQuery("SELECT * FROM seance WHERE ID = " + id);
-            System.out.println("Infos du result: "+result);
-
-            if (!result.next()) {
-                seance = new Seance(
-                        id,
-                        result.getInt("SEMAINE"),
-                        result.getDate("DATE"),
-                        result.getTime("HEURE_DEBUT"),
-                        result.getTime("HEURE_FIN"),
-                        result.getInt("ETAT"),
-                        result.getInt("ID_COURS"),
-                        result.getInt("ID_TYPE")     
-                );
-                System.out.println("Dans seance trouver:"+result.getInt("ID"));
+                System.out.println("Dans seance trouver:" + result.getInt("ID"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

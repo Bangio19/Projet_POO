@@ -83,4 +83,15 @@ public class Recherche {
  
     } 
     
+    public int jourSemaine(Seance seance){
+        DBConnect conn = new DBConnect();
+        Connection connect = conn.getCon();
+        SeanceDAO seanceDAO = new SeanceDAO(connect);
+        
+        Calendar c1 = Calendar.getInstance();
+        c1.setTimeZone(TimeZone.getTimeZone("Europe/Paris"));
+        c1.setTime(seance.getDate());
+        
+        return c1.get(Calendar.DAY_OF_WEEK);
+    }
 }
