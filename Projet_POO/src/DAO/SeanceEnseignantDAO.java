@@ -9,6 +9,7 @@ import Model.*;
 import java.sql.*;
 import java.util.Scanner;
 import Controller.*;
+import java.util.*;
 /**
  *
  * @author Bauti
@@ -132,4 +133,31 @@ public class SeanceEnseignantDAO  {
         }
         return seanceEns;
     }
-}
+    
+    public ArrayList toutSelect(int id){
+        
+        ArrayList<SeanceEnseignant> se = new ArrayList<SeanceEnseignant>();
+        try {
+            PreparedStatement pst = null;
+            ResultSet resultat = null;
+            
+              pst = this.connect.prepareStatement("SELECT * FROM seance_enseignant WHERE IDenseignant='"+id+"';");
+              resultat= pst.executeQuery();
+             ResultSetMetaData resultMeta = resultat.getMetaData();
+             while(resultat.next()){
+                 for (int i =1; i<resultMeta.getColumnCount(); i++){
+                     SeanceEnseignant  seen = new SeanceEnseignant((int)resultat.getObject(i),id);
+                     se.add(seen);
+                 }
+             }
+        }catch(SQLException e){
+            //Logger.getLogger(EleveDAO.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+        return se;
+        }
+   
+    }    
+    
+    
+
+

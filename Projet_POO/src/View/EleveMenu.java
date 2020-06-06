@@ -6,6 +6,11 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
+import DAO.*;
+import Model.*;
+import Projet_POO.DBConnect;
+import java.sql.Connection;
+
 /**
  *
  * @author antoi
@@ -37,10 +42,20 @@ public EleveMenu(int id){
        h6= new JLabel("17h15 / 18h45");
        h7= new JLabel("19h / 20h30");
        
+       container.setLayout(new GridLayout(8,6));
+       
+      //On Va cherher les séances
+      
+      
+      
+      
+      
+      
+      
        
        
      // ON DESSINE LA GRILLE   
-      container.setLayout(new GridLayout(8,6));
+      
       for(int i=0; i<48 ; i++){
           
             JPanel nouveau = new JPanel();
