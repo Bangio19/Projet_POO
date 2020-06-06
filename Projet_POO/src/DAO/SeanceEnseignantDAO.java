@@ -94,7 +94,7 @@ public class SeanceEnseignantDAO  {
             pst.setTime(4, heure_debut);
             rs = pst.executeQuery();
             if (rs.next()) {
-                System.out.print("prof a deja un cours a ce jour la et a cette horaire la on ne change pas !");
+                System.out.print("prof a deja un cours a ce jour la et a cet horaire la, on ne change pas !");
                 return false;
 
             }
