@@ -9,6 +9,8 @@ import Model.*;
 import java.sql.*;
 import java.util.Scanner;
 import Controller.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author Bauti
@@ -155,6 +157,34 @@ public class SeanceGroupeDAO {
         
         return false;
     }
+    
+    public ArrayList trouver_tous_les_groupes(int id) {
+        ArrayList<SeanceGroupe> seances = new ArrayList<SeanceGroupe>(); 
+            try 
+            {
+                PreparedStatement adr = null;
+                ResultSet rz = null;
+                adr  = this.connect.prepareStatement("SELECT * FROM seance_groupes WHERE ID_GROUPE=?");
+                adr.setInt(1, id);
+                rz = adr.executeQuery();                
+                ResultSetMetaData resultMeta = rz.getMetaData();
+                
+                while(rz.next())
+                {
+                    for(int i = 1; i< resultMeta.getColumnCount();i++)
+                    {
+                        SeanceGroupe seanGrp = new SeanceGroupe((int) rz.getObject(i),id);
+                        seances.add(seanGrp);
+                    }
+                }
+            } 
+            catch (SQLException ex) 
+            {
+                //Logger.getLogger(EleveDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return seances ;
+    }
+    
     
     public SeanceGroupe trouver(int id_s){
         SeanceGroupe seanceGr = null;

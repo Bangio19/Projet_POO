@@ -14,46 +14,41 @@ import java.awt.event.*;
  */
 public class EleveMenu extends JFrame implements ActionListener {
     
-    private final JPanel container = new JPanel();
+    private final JPanel container, nord;
     
     private int id_Eleve;
 
-    private JButton btn_emploi_du_temps = new JButton("Emploi du temps");
-    private JButton btn_recap_cours = new JButton("Récapitulatif des cours");
+    private final JButton btn_emploi_du_temps, btn_recap_cours;
         
     public EleveMenu(int id){
         
         super();
-        
         id_Eleve=id;
-        
         setVisible(true);
-        build();
-    }
-    
-    private void build()
-    {
+        
+        nord = new JPanel();
+        container = new JPanel();
+        
+        btn_emploi_du_temps = new JButton("Voir emploi du temps");
+        btn_recap_cours = new JButton("Voir le recapitulatif des cours");
+        
+        btn_emploi_du_temps.addActionListener(this);
+        btn_recap_cours.addActionListener(this);
+        
         Connexion connexion = new Connexion();
         String nom_etudiant= connexion.get_nom_etudiant(id_Eleve);
         setTitle("Emploi du temps de "+nom_etudiant);
+        setLayout(new BorderLayout());
         setSize(1000,600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        setContentPane(buildContentPane());
-    }
-    
-    private JPanel buildContentPane()
-    {
-        container.setLayout(new BorderLayout());
-		
-	btn_emploi_du_temps.addActionListener(this);
-	container.add("North", btn_emploi_du_temps);
-				
-	btn_recap_cours.addActionListener(this);
-	container.add("North", btn_recap_cours);;
-		
-	return container;
+                
+        nord.setLayout(new GridLayout(1,8));
+
+	nord.add("North", btn_emploi_du_temps);
+	nord.add("North", btn_recap_cours);
+
+        add("North", nord);
     }
     
     public void actionPerformed(ActionEvent e) {

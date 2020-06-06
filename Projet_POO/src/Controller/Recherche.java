@@ -30,12 +30,13 @@ public class Recherche {
  
     }
     
-    public void consulter_cours_etudiant(Etudiant eleve, int semaine)
+    public void consulter_cours_etudiant(int id_utilisateur, int semaine)
     {
         DBConnect conn = new DBConnect();
         Connection connect=conn.getCon(); 
 
         SeanceDAO SeanceDao = new SeanceDAO(connect);
+        
  
     }   
     public void consulter_cours_annule_etudiant(Etudiant eleve, int semaine)
