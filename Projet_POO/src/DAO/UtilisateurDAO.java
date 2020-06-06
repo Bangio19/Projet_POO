@@ -56,17 +56,40 @@ public class UtilisateurDAO {
     }
 
       
-    public Utilisateur trouver(String id) {
+    public Utilisateur trouver(String email) {
         Utilisateur user = null;
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE EMAIL = '"+ id +"'");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE EMAIL = '"+ email +"'");
             if (result.first()) {
                 user = new Utilisateur(
                         result.getInt("ID"),
+                        email,
+                        result.getString("MDP"),
+                        result.getString("NOM"),
+                        result.getString("PRENOM"),
+                        result.getInt("DROIT")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+    
+        public Utilisateur trouver(int id) {
+        Utilisateur user = null;
+
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE ID = '"+ id +"'");
+            if (result.first()) {
+                user = new Utilisateur(
                         id,
+                        result.getString("EMAIL"),
                         result.getString("MDP"),
                         result.getString("NOM"),
                         result.getString("PRENOM"),

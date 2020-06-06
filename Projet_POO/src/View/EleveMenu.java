@@ -4,44 +4,94 @@
  * and open the template in the editor.
  */
 package View;
+import Controller.Connexion;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 /**
  *
  * @author antoi
  */
-public class EleveMenu extends JFrame  {
+public class EleveMenu extends JFrame implements ActionListener {
     
-   private final JPanel container;
-   private final JLabel lundi, mardi, mercredi, jeudi, vendredi,h1,h2,h3,h4,h5,h6,h7;     
+    private final JPanel container = new JPanel();
+    
+    private int id_Eleve;
 
-public EleveMenu(int id){
-    super();
-      setTitle("Admin");
-      setSize(1600,800);
-      setLocationRelativeTo(null);
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      
-       container = new JPanel();
-       
-       lundi = new JLabel("Lundi");
-       mardi= new JLabel("Mardi");
-       mercredi = new JLabel("Mercredi");
-       jeudi = new JLabel("Jeudi");
-       vendredi = new JLabel("Vendredi");
-       h1= new JLabel("8h / 10h");
-       h2= new JLabel("10h15 / 11H45");
-       h3= new JLabel("12h / 13h30");
-       h4= new JLabel("13h45 / 15h15");
-       h5= new JLabel("15h30 / 17h");
-       h6= new JLabel("17h15 / 18h45");
-       h7= new JLabel("19h / 20h30");
-       
+    private JButton btn_emploi_du_temps = new JButton("Emploi du temps");
+    private JButton btn_recap_cours = new JButton("Récapitulatif des cours");
+        
+    public EleveMenu(int id){
+        
+        super();
+        
+        id_Eleve=id;
+        
+        setVisible(true);
+        build();
+    }
+    
+    private void build()
+    {
+        Connexion connexion = new Connexion();
+        String nom_etudiant= connexion.get_nom_etudiant(id_Eleve);
+        setTitle("Emploi du temps de "+nom_etudiant);
+        setSize(1000,600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        setContentPane(buildContentPane());
+    }
+    
+    private JPanel buildContentPane()
+    {
+        container.setLayout(new BorderLayout());
+		
+	btn_emploi_du_temps.addActionListener(this);
+	container.add("North", btn_emploi_du_temps);
+				
+	btn_recap_cours.addActionListener(this);
+	container.add("North", btn_recap_cours);;
+		
+	return container;
+    }
+    
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+
+        if(source == btn_emploi_du_temps)
+        {
+            System.out.println("Voici votre emploi du temps de la semaine 1.");
+            
+        } 
+        else if(source == btn_recap_cours)
+        {
+            System.out.println("Voici votre récapitulatif de cours");
+        }
+    }
+    
+}
+
+
+/*  container = new JPanel();
+        lundi = new JLabel("Lundi");
+        mardi= new JLabel("Mardi");
+        mercredi = new JLabel("Mercredi");
+        jeudi = new JLabel("Jeudi");
+        vendredi = new JLabel("Vendredi");
+        h1= new JLabel("8h / 10h");
+        h2= new JLabel("10h15 / 11H45");
+        h3= new JLabel("12h / 13h30");
+        h4= new JLabel("13h45 / 15h15");
+        h5= new JLabel("15h30 / 17h");
+        h6= new JLabel("17h15 / 18h45");
+        h7= new JLabel("19h / 20h30");
+       */
        
        
      // ON DESSINE LA GRILLE   
-      container.setLayout(new GridLayout(8,6));
-      for(int i=0; i<48 ; i++){
+      //container.setLayout(new GridLayout(8,6));
+      /*for(int i=0; i<48 ; i++){
           
             JPanel nouveau = new JPanel();
           
@@ -96,7 +146,4 @@ public EleveMenu(int id){
       
         
         
-    }
-    
-}    
-}
+    }*/

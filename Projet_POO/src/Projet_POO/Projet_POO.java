@@ -29,15 +29,18 @@ public class Projet_POO {
     public static void main(String[] args) {
 
         //Planning plan = new Planning();
-        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in);
         //Planning plan = new Planning();
         //Planning plan = new Planning();
 
-        DBConnect conn = new DBConnect();
+        //DBConnect conn = new DBConnect();
+        
+        Accueil accueil = new Accueil();
+        
+        accueil.setVisible(true);
 
-        //Accueil acc = new Accueil();
         //connect.getData();
-        Connection connect = conn.getCon();
+        /*Connection connect = conn.getCon();
 
         Mise_a_jour maj = new Mise_a_jour();
         int id = 1;
@@ -45,21 +48,62 @@ public class Projet_POO {
 ////////// TEST AJOUT DE SEANCE AVEC VERIFICATION DE DATE ET HORAIRE ///////////
         EnseignantDAO ensDAO = new EnseignantDAO(connect);
         Enseignant prof = ensDAO.trouver(16);
+        */
 
 //        SeanceDAO seanceDAO = new SeanceDAO(connect);
 //        Seance seance = seanceDAO.trouver(4);
 //        
 //        SeanceEnseignantDAO tmpEns = new SeanceEnseignantDAO(connect);
 //        SeanceEnseignant seanceEns = tmpEns.trouver(prof.getId(), seance.getId());
-
+/*
         GroupeDAO grpDAO = new GroupeDAO(connect);
         Groupe grp = grpDAO.trouver(1);
         
         SalleDAO salleDAO = new SalleDAO(connect);
         Salle salle = salleDAO.trouver(id);
 
+*/
 
+       
+        //Connection connect=conn.getCon();
 
+       /*
+        Mise_a_jour maj = new Mise_a_jour();
+        int id=1;
+        //SalleDAO salleDao=new SalleDAO(connect);
+//       SeanceEnseignantDAO tmpEns = new SeanceEnseignantDAO(connect);
+//       SeanceEnseignant seanceEns = tmpEns.trouver(id);
+
+       
+        //int id=2;
+        //SalleDAO salleDao=new SalleDAO(connect);
+       GroupeDAO grpDAO = new GroupeDAO(connect);
+       Groupe grp = grpDAO.trouver(1);
+       
+       EnseignantDAO EnsDAO = new EnseignantDAO(connect);
+       Enseignant prof = EnsDAO.trouver(17);
+       
+       SeanceDAO seanceDAO = new SeanceDAO(connect);
+       Seance seance = seanceDAO.trouver(7);       
+       
+       //Mise_a_jour maj = new Mise_a_jour();
+       maj.ajouter_groupe_a_seance(grp, seance);
+       //maj.ajouter_enseignant_a_seance(prof, seance);
+*/
+
+       // int id = 2;
+        //SalleDAO salleDao=new SalleDAO(connect);
+       // EnseignantDAO ensDAO = new EnseignantDAO(connect);
+       // Enseignant prof = ensDAO.trouver(16);
+
+       // SeanceDAO seanceDAO = new SeanceDAO(connect);
+       // Seance seance = seanceDAO.trouver(4);
+
+      //  Mise_a_jour maj = new Mise_a_jour();
+        // maj.ajouter_enseignant_a_seance(prof, seance);
+
+        ///// TEST AJOUT DE SEANCE AVEC VERIFICATION DE DATE ET HORAIRE ///////////
+       /*
         System.out.println("Entrer la date");
         String dateee = sc.next();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -82,10 +126,10 @@ public class Projet_POO {
             maj.ajouter_seance(9, dateDB, heure_d, heure_f, 0, cours.getId(), 1, grp, prof, salle);
         } catch (ParseException ex) {
             Logger.getLogger(Projet_POO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DateTimeException ex) /*On vérifie que les horaires et dates entrés sont possibles*/ {
+        } catch (DateTimeException ex) /*On vérifie que les horaires et dates entrés sont possibles {
             System.out.println("La date ou les horaires entrés ne sont pas possibles");
         }
-
+*/
 ////////////////////**************////////////////////////////////************//
         
         
