@@ -80,9 +80,11 @@ public class Mise_a_jour {
             throw new DateTimeException("Les horaires ou date rentrés ne sont pas autorisés");
         } else {
             System.out.println("WEEKDAY");
+           
             seance.setDate(date);
             seance.setHeureDebut(heure_debut);
             seance.setHeureFin(heure_fin);
+             seanceDAO.modifier(seance);
         }
     }
 
