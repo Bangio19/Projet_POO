@@ -21,21 +21,43 @@ public class Recherche {
     //ArrayList<Seance> listSeance= new ArrayList<Seance>();
     
     
-    public void consulter_cours_enseignant(Enseignant prof, int semaine)
+    public void consulter_cours_enseignant(int id)
     {
         DBConnect conn = new DBConnect();
         Connection connect=conn.getCon(); 
-
-        SeanceDAO SeanceDao = new SeanceDAO(connect);
- 
+        
+        EnseignantDAO e = new EnseignantDAO(connect);
+        SeanceDAO Se = new SeanceDAO(connect);
+        SeanceEnseignantDAO sg = new SeanceEnseignantDAO(connect);
+        
+        Enseignant en;
+        Seance sea;
+        SeanceEnseignant seen;
+        
+        
+        
+        
+        
+        
+        
     }
+   
     
-    public void consulter_cours_etudiant(Etudiant eleve, int semaine)
+    public void consulter_cours_etudiant(int id, int semaine)
     {
-        DBConnect conn = new DBConnect();
-        Connection connect=conn.getCon(); 
-
-        SeanceDAO SeanceDao = new SeanceDAO(connect);
+         
+       DBConnect conn = new DBConnect();
+      Connection connect=conn.getCon();
+      
+      EtudiantDAO e = new EtudiantDAO(connect);
+      SeanceGroupeDAO sg = new SeanceGroupeDAO(connect);
+      SeanceDAO s = new SeanceDAO(connect);
+      
+      Etudiant etud;
+      Seance sean;
+      SeanceGroupe seangrou;
+      
+      etud = e.trouver(id);
  
     }   
     public void consulter_cours_annule_etudiant(Etudiant eleve, int semaine)
