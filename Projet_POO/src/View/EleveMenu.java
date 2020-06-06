@@ -8,6 +8,12 @@ import Controller.Connexion;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import DAO.*;
+import Model.*;
+import Projet_POO.DBConnect;
+import java.sql.Connection;
+
+
 /**
  *
  * @author antoi
@@ -73,77 +79,3 @@ public class EleveMenu extends JFrame implements ActionListener {
 }
 
 
-/*  container = new JPanel();
-        lundi = new JLabel("Lundi");
-        mardi= new JLabel("Mardi");
-        mercredi = new JLabel("Mercredi");
-        jeudi = new JLabel("Jeudi");
-        vendredi = new JLabel("Vendredi");
-        h1= new JLabel("8h / 10h");
-        h2= new JLabel("10h15 / 11H45");
-        h3= new JLabel("12h / 13h30");
-        h4= new JLabel("13h45 / 15h15");
-        h5= new JLabel("15h30 / 17h");
-        h6= new JLabel("17h15 / 18h45");
-        h7= new JLabel("19h / 20h30");
-       */
-       
-       
-     // ON DESSINE LA GRILLE   
-      //container.setLayout(new GridLayout(8,6));
-      /*for(int i=0; i<48 ; i++){
-          
-            JPanel nouveau = new JPanel();
-          
-          // Jour de la semaine affichage
-          if(i == 1){
-              nouveau.add(lundi);
-          }
-          if(i == 2){
-              nouveau.add(mardi);
-          }
-          if(i == 3){
-              nouveau.add(mercredi);
-          }
-          if(i == 4){
-              nouveau.add(jeudi);
-          }
-          if(i == 5){
-              nouveau.add(vendredi);
-          }
-          
-          // Horaire affichage 
-          
-           if(i == 6){
-              nouveau.add(h1);
-          }
-          if(i == 12){
-              nouveau.add(h2);
-          }
-          if(i == 18){
-              nouveau.add(h3);
-          }
-          if(i == 24){
-              nouveau.add(h4);
-          }
-          if(i == 30){
-              nouveau.add(h5);
-          }
-           if(i == 36){
-              nouveau.add(h6);
-          }
-          if(i == 42){
-              nouveau.add(h7);
-          }
-
-          
-          nouveau.setBorder(BorderFactory.createLineBorder(Color.black,1));
-          container.add(nouveau);
-     
-     setContentPane(container);
-      
-      setVisible(true);
-      
-        
-        
-    }*/
