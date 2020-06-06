@@ -32,10 +32,22 @@ public class Projet_POO {
 
         Scanner sc = new Scanner(System.in);
         //Planning plan = new Planning();
+      Planning plan = new Planning();
+        
+        DBConnect conn = new DBConnect();
+
         //Accueil acc = new Accueil();
         //connect.getData();
-        DBConnect conn = new DBConnect();
+       
         Connection connect=conn.getCon();
+
+       
+        Mise_a_jour maj = new Mise_a_jour();
+        int id=1;
+        //SalleDAO salleDao=new SalleDAO(connect);
+//       SeanceEnseignantDAO tmpEns = new SeanceEnseignantDAO(connect);
+//       SeanceEnseignant seanceEns = tmpEns.trouver(id);
+
        
         //int id=2;
         //SalleDAO salleDao=new SalleDAO(connect);
@@ -48,21 +60,21 @@ public class Projet_POO {
        SeanceDAO seanceDAO = new SeanceDAO(connect);
        Seance seance = seanceDAO.trouver(7);       
        
-       Mise_a_jour maj = new Mise_a_jour();
+       //Mise_a_jour maj = new Mise_a_jour();
        maj.ajouter_groupe_a_seance(grp, seance);
        //maj.ajouter_enseignant_a_seance(prof, seance);
 
-        Connection connect = conn.getCon();
+       // Connection connect = conn.getCon();
 
-        int id = 2;
+       // int id = 2;
         //SalleDAO salleDao=new SalleDAO(connect);
-        EnseignantDAO ensDAO = new EnseignantDAO(connect);
-        Enseignant prof = ensDAO.trouver(16);
+       // EnseignantDAO ensDAO = new EnseignantDAO(connect);
+       // Enseignant prof = ensDAO.trouver(16);
 
-        SeanceDAO seanceDAO = new SeanceDAO(connect);
-        Seance seance = seanceDAO.trouver(4);
+       // SeanceDAO seanceDAO = new SeanceDAO(connect);
+       // Seance seance = seanceDAO.trouver(4);
 
-        Mise_a_jour maj = new Mise_a_jour();
+      //  Mise_a_jour maj = new Mise_a_jour();
         // maj.ajouter_enseignant_a_seance(prof, seance);
 
         ///// TEST AJOUT DE SEANCE AVEC VERIFICATION DE DATE ET HORAIRE ///////////

@@ -56,17 +56,17 @@ public class UtilisateurDAO {
     }
 
       
-    public Utilisateur trouver(int id) {
+    public Utilisateur trouver(String id) {
         Utilisateur user = null;
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE ID = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE EMAIL = '"+ id +"'");
             if (result.first()) {
                 user = new Utilisateur(
+                        result.getInt("ID"),
                         id,
-                        result.getString("EMAIL"),
                         result.getString("MDP"),
                         result.getString("NOM"),
                         result.getString("PRENOM"),
