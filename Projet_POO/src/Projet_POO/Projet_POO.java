@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Projet_POO;
+
 import Controller.*;
 import DAO.*;
 import Model.*;
@@ -11,15 +12,12 @@ import java.util.*;
 import java.sql.*;
 import java.text.*;
 
-
-
-
 import View.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
- 
-
- /*
+/*
 
  * @author Bauti
  */
@@ -31,6 +29,9 @@ public class Projet_POO {
     public static void main(String[] args) {
         
        //Planning plan = new Planning();
+
+        Scanner sc = new Scanner(System.in);
+        //Planning plan = new Planning();
         //Accueil acc = new Accueil();
         //connect.getData();
         DBConnect conn = new DBConnect();
@@ -50,13 +51,58 @@ public class Projet_POO {
        Mise_a_jour maj = new Mise_a_jour();
        maj.ajouter_groupe_a_seance(grp, seance);
        //maj.ajouter_enseignant_a_seance(prof, seance);
+
+        Connection connect = conn.getCon();
+
+        int id = 2;
+        //SalleDAO salleDao=new SalleDAO(connect);
+        EnseignantDAO ensDAO = new EnseignantDAO(connect);
+        Enseignant prof = ensDAO.trouver(16);
+
+        SeanceDAO seanceDAO = new SeanceDAO(connect);
+        Seance seance = seanceDAO.trouver(4);
+
+        Mise_a_jour maj = new Mise_a_jour();
+        // maj.ajouter_enseignant_a_seance(prof, seance);
+
+        ///// TEST AJOUT DE SEANCE AVEC VERIFICATION DE DATE ET HORAIRE ///////////
+        System.out.println("Entrer la date");
+        String dateee = sc.next();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        
+        CoursDAO coursDAO = new CoursDAO(connect);
+        Cours cours = coursDAO.trouver(7);
+        java.util.Date date;
+        try {
+            date = format.parse(dateee);
+            java.sql.Date dateDB = new java.sql.Date(date.getTime());
+
+            System.out.println("la heure debut : ");
+            String heureD = sc.next();
+            Time heure_d = Time.valueOf(heureD);
+
+            System.out.println("la heure fin : ");
+            String heureF = sc.next();
+            Time heure_f = Time.valueOf(heureF);
+            
+             maj.ajouter_seance(6,dateDB, heure_d, heure_f, 0,cours.getId(), 1);
+        } catch (ParseException ex) {
+            Logger.getLogger(Projet_POO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DateTimeException ex) /*On vérifie que les horaires et dates entrés sont possibles */{
+            System.out.println("La date ou les horaires entrés ne sont pas possibles");
+        }
+
+       
+        
+
+        //////////////**************////////////////////////////////************//
         /*for(int i=0; i<3; i++)
         {
             System.out.println(seanceEns.getIdSeance());
             System.out.println(seanceEns.getIdEnseignant());
 
         }*/
-       /* DAO<Groupe> groupeDao= new GroupeDAO(connect);
+ /* DAO<Groupe> groupeDao= new GroupeDAO(connect);
         
         //int id = 3;
         
@@ -68,8 +114,6 @@ public class Projet_POO {
         
         Groupe grp = new Groupe(1,nom, id_promo);
         groupeDao.creer(grp);*/
-        
-
         //DAO<Seance> SeanceDao= new SeanceDAO(connect);
         //DAO<Promotion> PromotionDao= new PromotionDAO(connect);
         //int id = 3;
@@ -106,13 +150,7 @@ public class Projet_POO {
         catch (ParseException ex) {
             Logger.getLogger(SeanceDAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
-*/
-
-
-        
-
+         */
     }
-    
-    
-    
+
 }
