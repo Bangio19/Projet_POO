@@ -42,22 +42,7 @@ public class Recherche {
         
     }
    
-    
-    public void consulter_cours_etudiant(int id, int semaine)
-    {
-         
-       DBConnect conn = new DBConnect();
-      Connection connect=conn.getCon();
-      
-      EtudiantDAO e = new EtudiantDAO(connect);
-      SeanceGroupeDAO sg = new SeanceGroupeDAO(connect);
-      SeanceDAO s = new SeanceDAO(connect);
-      
-      Etudiant etud;
-      Seance sean;
-      SeanceGroupe seangrou;
-      
-      etud = e.trouver(id);
+ 
  
     }   
     public void consulter_cours_annule_etudiant(Etudiant eleve, int semaine)
