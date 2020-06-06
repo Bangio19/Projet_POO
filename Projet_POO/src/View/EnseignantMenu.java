@@ -15,7 +15,7 @@ public class EnseignantMenu  extends JFrame{
       private final JPanel container;
    private final JLabel lundi, mardi, mercredi, jeudi, vendredi,h1,h2,h3,h4,h5,h6,h7;
     
-    public EnseignantMenu (){
+    public EnseignantMenu (int id){
         super();
       setTitle("Admin");
       setSize(1600,800);
@@ -36,6 +36,12 @@ public class EnseignantMenu  extends JFrame{
        h5= new JLabel("15h30 / 17h");
        h6= new JLabel("17h15 / 18h45");
        h7= new JLabel("19h / 20h30");
+       
+       // On cherche une séance
+       
+       
+       
+       
        
       container.setLayout(new GridLayout(8,6));
       for(int i=0; i<48 ; i++){

@@ -108,12 +108,12 @@ public class Accueil extends JFrame implements ActionListener {
               if (droit == 3){
                   
                   setVisible(false);
-                  EnseignantMenu nouveau = new EnseignantMenu();
+                  EnseignantMenu nouveau = new EnseignantMenu(NotreUtil.getId());
               }
               if (droit == 4){
                   
                   setVisible(false);
-                  EleveMenu nouveau = new EleveMenu();
+                  EleveMenu nouveau = new EleveMenu(NotreUtil.getId());
               }
               
               
