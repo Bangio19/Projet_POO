@@ -76,7 +76,7 @@ public class AffectEnseignants extends JFrame {
         JLabel sep = new JLabel("*****************************");
         nord.add(sep);
         for (int i = 0; i < listSeances.size(); i++) {
-            JLabel seances = new JLabel(listSeances.get(i).toString());
+            JLabel seances = new JLabel(listSeances.get(i).toString(search.getCoursName(listSeances.get(i).getIdCours())));
             nord.add(seances);
         }
 

@@ -184,7 +184,6 @@ public class SeanceDAO {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM seance ");
-
             while (result.next()) {
                 for (int i = 1; i < 2; i++) {
                     Seance uneSeance = this.trouver(result.getInt("ID"));//new Utilisateur(result.getInt("ID"),result.getString("EMAIL"), result.getString("MDP"), result.getString("NOM"), result.getString("PRENOM"), result.getInt("DROIT"));
@@ -192,7 +191,7 @@ public class SeanceDAO {
                 }
             }
         } catch (SQLException ex) {
-            //Logger.getLogger(EleveDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return seances;
     }

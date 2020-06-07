@@ -110,4 +110,14 @@ public class Recherche {
        ArrayList<Seance> seances = seanceDAO.trouverTous();
        return seances;
     }
+    
+    public String getCoursName(int id){
+        DBConnect conn = new DBConnect();
+        Connection connect = conn.getCon();
+        CoursDAO coursDAO = new CoursDAO(connect);
+        Cours cours = coursDAO.trouver(id);
+        
+        return cours.getNom();
+        
+    }
 }

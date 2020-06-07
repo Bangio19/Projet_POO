@@ -54,9 +54,9 @@ public class Seance {
     public void setIdCours(int idCours){m_idCours=idCours;}
     public void setIdType(int idType){m_idType=idType;}
     
-    @Override
-    public String toString(){
-        return "Id:"+m_id+" Semaine: "+m_semaine+" Date: "+m_date+" Heure début: "+m_heureDebut+" Heure de fin: "+m_heureFin+" Etat: "+m_etat+" Id du cours: "+m_idCours+" Id type: "+m_idType;
+    
+    public String toString(String nom){
+        return "Id:"+m_id+" Semaine: "+m_semaine+" Date: "+m_date+" Heure début: "+m_heureDebut+" Heure de fin: "+m_heureFin+" Etat: "+m_etat+" Nom du cours: "+nom+" Id type: "+m_idType;
     }
 
 }
