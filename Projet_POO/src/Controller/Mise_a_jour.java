@@ -48,6 +48,11 @@ public class Mise_a_jour {
 
     }
 
+    /**
+     * Modifie le nom d'un cours dans une séance
+     * @param cours
+     * @param seance 
+     */
     public void modif_nom_cours_dans_seance(Cours cours, Seance seance) {
         DBConnect conn = new DBConnect();
         Connection connect = conn.getCon();
@@ -57,6 +62,11 @@ public class Mise_a_jour {
         seanceDAO.modifier(seance);
     }
 
+    /**
+     * Modifie le type d'un cours dans une séance
+     * @param typeCours
+     * @param seance 
+     */
     public void modif_type_cours_dans_seance(TypeCours typeCours, Seance seance) {
         DBConnect conn = new DBConnect();
         Connection connect = conn.getCon();
@@ -73,6 +83,15 @@ public class Mise_a_jour {
 
     }
 
+    /**
+     * Déplace une séance à la date, horaire souhaité
+     * @param seance
+     * @param semaine
+     * @param date
+     * @param heure_debut
+     * @param heure_fin
+     * @throws DateTimeException 
+     */
     public void deplacer_seance(Seance seance,int semaine, java.util.Date date, Time heure_debut,
             Time heure_fin) throws DateTimeException {
         DBConnect conn = new DBConnect();
@@ -102,6 +121,20 @@ public class Mise_a_jour {
         }
     }
 
+    /**
+     * Ajoute une séance avec tous les paramètre souhaités
+     * @param semaine
+     * @param date
+     * @param heure_debut
+     * @param heure_fin
+     * @param etat
+     * @param id_cours
+     * @param id_type
+     * @param groupe
+     * @param enseignant
+     * @param salle
+     * @throws DateTimeException 
+     */
     public void ajouter_seance(int semaine, java.util.Date date, Time heure_debut,
             Time heure_fin, int etat, int id_cours, int id_type, Groupe groupe, Enseignant enseignant, Salle salle) throws DateTimeException {
         DBConnect conn = new DBConnect();
