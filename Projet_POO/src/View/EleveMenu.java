@@ -146,7 +146,7 @@ public class EleveMenu extends JFrame implements ActionListener {
                 System.out.println("La semaine : "+numero_semaine_annule);
             }catch(NumberFormatException a)
             {
-		System.out.println("c'est une lettre");;					
+		System.out.println("c'est une lettre");				
             }
                         
             ArrayList<Seance> maListe = new ArrayList<Seance>();
