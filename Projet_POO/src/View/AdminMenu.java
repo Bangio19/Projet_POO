@@ -39,7 +39,7 @@ public class AdminMenu extends JFrame {
         btnMajSeances.addActionListener(new AdminMenu.seancesListener());
 
         Connexion connexion = new Connexion();
-        String nom_etudiant = connexion.get_nom_etudiant(idAdmin);
+        String nom_etudiant = connexion.get_nom(idAdmin);
         setTitle("Emploi du temps de " + nom_etudiant);
         setLayout(new BorderLayout());
         setSize(1000, 600);
@@ -58,7 +58,7 @@ public class AdminMenu extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Planning planning = new Planning();
+            //Planning planning = new Planning();
         }
 
     }

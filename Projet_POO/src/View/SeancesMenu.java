@@ -121,7 +121,7 @@ public class SeancesMenu extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Planning planning = new Planning();
+            //Planning planning = new Planning();
         }
 
     }
@@ -139,7 +139,7 @@ public class SeancesMenu extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Planning planning = new Planning();
+            //Planning planning = new Planning();
         }
 
     }
@@ -157,7 +157,7 @@ public class SeancesMenu extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Planning planning = new Planning();
+            //Planning planning = new Planning();
         }
 
     }
@@ -175,7 +175,7 @@ public class SeancesMenu extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Planning planning = new Planning();
+            //Planning planning = new Planning();
         }
 
     }
@@ -184,7 +184,7 @@ public class SeancesMenu extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Planning planning = new Planning();
+            //Planning planning = new Planning();
         }
 
     }
@@ -193,7 +193,7 @@ public class SeancesMenu extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Planning planning = new Planning();
+            //Planning planning = new Planning();
         }
 
     }
