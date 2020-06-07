@@ -19,11 +19,10 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  * @author Bauti
  */
-public class AffectEnseignants extends JFrame {
-
+public class AffectGroupe extends JFrame {
     private DBConnect conn;
     Connection connect;
     private final JPanel p0, nord;
@@ -34,9 +33,9 @@ public class AffectEnseignants extends JFrame {
     private int id_Eleve;
 
     /**
-     * Affecte/Ajoute un enseignant spécifique à une séance spécifique 
+     * Affecte/Ajoute un groupe spécifique à une séance spécifique 
      */
-    public AffectEnseignants() {
+    public AffectGroupe() {
         super();
 
         nord = new JPanel();
@@ -52,7 +51,7 @@ public class AffectEnseignants extends JFrame {
         p0.setLayout(new GridLayout(1, 2));
         nord.setLayout(new GridLayout(f.getHeight(), 1));
 
-        ensIdInput = new JTextField("Entrer l'ID de l'enseignant");
+        ensIdInput = new JTextField("Entrer l'ID du groupe");
         seanceIdInput = new JTextField("Entrer l'ID de la séance");
 
         exec = new JButton("Executer");
@@ -62,28 +61,29 @@ public class AffectEnseignants extends JFrame {
         p0.add(exec);
         nord.add("North", p0);
 
-        exec.addActionListener(new AffectEnseignants.searchListener());
+        exec.addActionListener(new AffectGroupe.searchListener());
 
         //Connexion à la BDD
         conn = new DBConnect();
         connect = conn.getCon();
 
-        //Recuperation de tous les enseignants
+        //Recuperation de tous les groupes
         Recherche search = new Recherche();
-        ArrayList<Utilisateur> listEnseignants = search.getAllUsers();
+        ArrayList<Groupe> listGroupe = search.getAllGroups();
         ArrayList<Seance> listSeances = search.getAllSeances();
-        for (int i = 0; i < listEnseignants.size(); i++) {
-            JLabel ens = new JLabel(listEnseignants.get(i).getPrenom() + " " + listEnseignants.get(i).getNom() + ", ID: " + listEnseignants.get(i).getId());
+        for (int i = 0; i < listGroupe.size(); i++) {
+            JLabel ens = new JLabel(listGroupe.get(i).toString(search.getPromoName(listGroupe.get(i).getIdPromotion())));
             nord.add(ens);
         }
         JLabel sep = new JLabel("*****************************");
+        //Recuperation de toutes les séances existantes
         nord.add(sep);
         for (int i = 0; i < listSeances.size(); i++) {
             JLabel seances = new JLabel(listSeances.get(i).toString(search.getCoursName(listSeances.get(i).getIdCours())));
             nord.add(seances);
         }
 
-        //Recuperation de toutes les séances existantes
+        
         // disposition geographique des panneaux
         add("North", nord);
 
@@ -98,21 +98,21 @@ public class AffectEnseignants extends JFrame {
             connect = conn.getCon();
 
             try {
-                String ensinput = ensIdInput.getText();
-                int id_e = Integer.parseInt(ensinput);
+                String grpinput = ensIdInput.getText();
+                int id_e = Integer.parseInt(grpinput);
                 
                 String seinput = seanceIdInput.getText();
                 int id_s = Integer.parseInt(seinput);
 
-                EnseignantDAO EnsDAO = new EnseignantDAO(connect);
-                Enseignant prof = EnsDAO.trouver(id_e);
+                GroupeDAO grpDAO = new GroupeDAO(connect);
+                Groupe groupe = grpDAO.trouver(id_e);
 
                 SeanceDAO seanceDAO = new SeanceDAO(connect);
                 Seance seance = seanceDAO.trouver(id_s);
 
                 Mise_a_jour maj = new Mise_a_jour();
 
-                maj.ajouter_enseignant_a_seance(prof, seance);
+                maj.ajouter_groupe_a_seance(groupe, seance);
             } catch (NumberFormatException a) {
                 System.out.println("c'est une lettre");
             }

@@ -26,4 +26,8 @@ public class Groupe {
 
     public void setNom(String nom){m_nom=nom;}
     public void setIdPromotion(int idPromotion){m_idPromotion=idPromotion;}
+    
+     public String toString(String nom){
+        return "Id: "+m_id+", Groupe: "+nom+", Promotion: "+nom;
+    }
 }

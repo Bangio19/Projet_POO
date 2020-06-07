@@ -54,4 +54,26 @@ public class GroupeDAO{
         }
         return groupe;
     }
+
+    /**
+     * renvoie une ArrayList de tous les groupes existants
+     * @return ArrayList<Groupe>
+     */
+    public ArrayList<Groupe> trouverTous() {
+        ArrayList<Groupe> groups = new ArrayList<>();
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM groupe ");
+            while (result.next()) {
+                for (int i = 1; i < 2; i++) {
+                    Groupe uneSeance = this.trouver(result.getInt("ID"));//new Utilisateur(result.getInt("ID"),result.getString("EMAIL"), result.getString("MDP"), result.getString("NOM"), result.getString("PRENOM"), result.getInt("DROIT"));
+                    groups.add(uneSeance);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return groups;
+    }
 }

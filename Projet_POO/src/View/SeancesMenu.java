@@ -103,7 +103,7 @@ public class SeancesMenu extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Planning planning = new Planning();
+            AffectGroupe affectGrp = new AffectGroupe();
         }
 
     }
