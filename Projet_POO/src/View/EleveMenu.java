@@ -5,6 +5,7 @@
  */
 package View;
 import Controller.Connexion;
+import Controller.Recherche;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -12,6 +13,7 @@ import DAO.*;
 import Model.*;
 import Projet_POO.DBConnect;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 
 /**
@@ -21,7 +23,8 @@ import java.sql.Connection;
 public class EleveMenu extends JFrame implements ActionListener {
     
     private Connexion connexion = new Connexion();
-    private Planning planning = new Planning();
+    private Recherche recherche = new Recherche();
+    private Planning planning;
 
     private final JLabel requeteSemaine;
     private final JPanel bouton, semaine, nord;
@@ -48,7 +51,7 @@ public class EleveMenu extends JFrame implements ActionListener {
         btn_recap_cours.addActionListener(this);
         btn_exe_semaine.addActionListener(this);
 
-        String nom_etudiant= connexion.get_nom_etudiant(id_Eleve);
+        String nom_etudiant= connexion.get_nom(id_Eleve);
         setTitle("Emploi du temps de "+nom_etudiant);
         
         setLayout(new BorderLayout());
@@ -76,7 +79,8 @@ public class EleveMenu extends JFrame implements ActionListener {
 	nord.add("North", semaine);
 
         add("North", nord);
-
+        
+        
     }
     
     public void actionPerformed(ActionEvent e) {
@@ -85,7 +89,7 @@ public class EleveMenu extends JFrame implements ActionListener {
         if(source == btn_emploi_du_temps)
         {
             //System.out.println("Voici votre emploi du temps de la semaine 1.");
-            Planning planning = new Planning();
+            //Planning planning = new Planning();
         } 
         else if(source == btn_recap_cours)
         {
@@ -93,15 +97,30 @@ public class EleveMenu extends JFrame implements ActionListener {
         }
         else if(source == btn_exe_semaine)
         {
+            int numero_semaine=0;
             try{
                 String semaine_select = numeroSemaine.getText();
-                int numero_semaine = Integer.parseInt(semaine_select);
+                numero_semaine = Integer.parseInt(semaine_select);
                 System.out.println("La semaine : "+numero_semaine);
             }catch(NumberFormatException a)
             {
 		System.out.println("c'est une lettre");;					
             }
-	
+                        
+            ArrayList<Seance> maListe = new ArrayList<Seance>();
+            
+            maListe = recherche.consulter_cours__etudiant(id_Eleve, numero_semaine);
+            
+            System.out.println(maListe.size());
+
+            int[] tab =new int[maListe.size()];
+            for(int i=0; i<maListe.size();i++)
+            {
+                tab[i] = recherche.jourSemaine(maListe.get(i));
+            }
+            
+            planning = new Planning(maListe, tab);
+            
         }
     }
     

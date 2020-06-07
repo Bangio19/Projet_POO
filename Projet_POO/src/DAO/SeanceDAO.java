@@ -47,6 +47,8 @@ public class SeanceDAO {
         return false;
     }
 
+     
+    
     //SUPPRIMER UNE SEANCE
     public boolean supprimer(Seance obj) throws SQLException {
         PreparedStatement st = null;
