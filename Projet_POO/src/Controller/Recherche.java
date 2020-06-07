@@ -33,18 +33,39 @@ public class Recherche {
         Enseignant en;
         Seance sea;
         SeanceEnseignant seen;
+    }
+    
+    public ArrayList<Seance> consulter_cours__etudiant(int id_utilisateur, int semaine)
+    {
+        DBConnect conn = new DBConnect();
+        Connection connect=conn.getCon(); 
+
+        SeanceGroupeDAO seancegrpDao = new SeanceGroupeDAO(connect);
+        SeanceDAO seanceDAO = new SeanceDAO(connect);
         
+        EtudiantDAO eleveDAO = new EtudiantDAO(connect);
+        Etudiant eleve = eleveDAO.trouver(id_utilisateur);
+        int id_groupe = eleve.getIdGroupe();
         
+        ArrayList<SeanceGroupe> listSeanGrp = new ArrayList<SeanceGroupe>();
         
+        listSeanGrp = seancegrpDao.trouver_tous_les_groupes(id_groupe);
         
-        
-        
+        ArrayList<Seance> listeSeance = new ArrayList<Seance>();
+        for(int i=0; i< listSeanGrp.size(); i++){
+            Seance s = seanceDAO.trouver(listSeanGrp.get(i).getIdSeance());
+            listeSeance.add(s);
+        }
+        for(int i=0 ; i< listeSeance.size(); i++){
+            if(listeSeance.get(i).getSemaine()!= semaine)
+            {
+                listeSeance.remove(i);
+            }
+        }
+        return listeSeance;
         
     }
-   
- 
- 
-    }   
+    
     public void consulter_cours_annule_etudiant(Etudiant eleve, int semaine)
     {
         DBConnect conn = new DBConnect();
