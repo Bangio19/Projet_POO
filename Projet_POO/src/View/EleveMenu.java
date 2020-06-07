@@ -13,7 +13,13 @@ import DAO.*;
 import Model.*;
 import Projet_POO.DBConnect;
 import java.sql.Connection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 
 /**
@@ -26,12 +32,12 @@ public class EleveMenu extends JFrame implements ActionListener {
     private Recherche recherche = new Recherche();
     private Planning planning;
 
-    private final JLabel requeteSemaine, requeteSemaineAnnule;
+    private final JLabel requeteSemaine, requeteSemaineAnnule, requeteDate;
     private final JPanel bouton, semaine, semaine_annule, nord;
-    private final JTextField numeroSemaine, numeroSemaineAnnule;
+    private final JTextField numeroSemaine, numeroSemaineAnnule, DateDebut, DateFin;
     private int id_Eleve;
 
-    private final JButton btn_emploi_du_temps, btn_recap_cours, btn_exe_semaine, btn_exe_semaine_annule;
+    private final JButton btn_recap_cours, btn_exe_semaine, btn_exe_semaine_annule;
         
     public EleveMenu(int id){
         
@@ -44,12 +50,10 @@ public class EleveMenu extends JFrame implements ActionListener {
         semaine = new JPanel();
         semaine_annule = new JPanel();
 
-        btn_emploi_du_temps = new JButton("Voir emploi du temps");
         btn_recap_cours = new JButton("Voir le recapitulatif des cours");
         btn_exe_semaine = new JButton("Rechercher les cours de la semaine");
         btn_exe_semaine_annule = new JButton("Rechercher les cours de la semaine annule");
 
-        btn_emploi_du_temps.addActionListener(this);
         btn_recap_cours.addActionListener(this);
         btn_exe_semaine.addActionListener(this);
         btn_exe_semaine_annule.addActionListener(this);
@@ -64,11 +68,14 @@ public class EleveMenu extends JFrame implements ActionListener {
 
         numeroSemaine = new JTextField();
         numeroSemaineAnnule = new JTextField();
-
+        DateDebut = new JTextField();
+        DateFin = new JTextField();
+        
+        requeteDate = new JLabel("Entrez 1. la date de debut et 2. Date de fin", JLabel.CENTER);
         requeteSemaine = new JLabel("Selectionnez la semaine :", JLabel.CENTER);
         requeteSemaineAnnule = new JLabel("Selectionnez la semaine annule :", JLabel.CENTER);
 
-        bouton.setLayout(new GridLayout(1,2));
+        bouton.setLayout(new GridLayout(1,4));
         semaine.setLayout(new GridLayout(1,3));
         semaine_annule.setLayout(new GridLayout(1,3));
         nord.setLayout(new GridLayout(3,1));
@@ -78,11 +85,14 @@ public class EleveMenu extends JFrame implements ActionListener {
         semaine.add(numeroSemaine);
         semaine.add(btn_exe_semaine);
         
+        semaine_annule.add(requeteDate);
         semaine_annule.add(requeteSemaineAnnule);
         semaine_annule.add(numeroSemaineAnnule);
         semaine_annule.add(btn_exe_semaine_annule);
         
-        bouton.add(btn_emploi_du_temps);
+        bouton.add(requeteDate);
+        bouton.add(DateDebut);
+        bouton.add(DateFin);
         bouton.add(btn_recap_cours);
         
         nord.add("North", bouton);
@@ -97,16 +107,34 @@ public class EleveMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
 
-        if(source == btn_emploi_du_temps)
-        {
-            //System.out.println("Voici votre emploi du temps de la semaine 1.");
-            //Planning planning = new Planning();
-        } 
-        else if(source == btn_recap_cours)
+        if(source == btn_recap_cours)
         {
             System.out.println("Voici votre récapitulatif de cours");
             
+            String d_debut = DateDebut.getText();
+            String d_fin = DateFin.getText();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        java.util.Date dateDebut;
+        java.util.Date dateFin;
+        try {
+            dateDebut = format.parse(d_debut);
+            java.sql.Date dateDB = new java.sql.Date(dateDebut.getTime());
+            dateFin = format.parse(d_fin);
+            java.sql.Date dateFN = new java.sql.Date(dateFin.getTime());            
+		
             
+            ArrayList<Seance> maListe = new ArrayList<Seance>();
+            
+            maListe = recherche.recapitulatif_cours_etudiant(id_Eleve, dateDB, dateFN);
+            
+            RecapCours recap = new RecapCours(maListe);
+            
+            } catch (ParseException ex) {
+                Logger.getLogger(EleveMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+
         }
         
         else if(source == btn_exe_semaine_annule)
