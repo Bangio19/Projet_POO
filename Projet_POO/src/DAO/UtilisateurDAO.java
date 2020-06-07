@@ -8,19 +8,21 @@ package DAO;
 import java.sql.*;
 import Model.Utilisateur;
 import Projet_POO.DBConnect;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 /**
  *
  * @author Bauti
  */
 public class UtilisateurDAO {
+
     private Connection connect;
 
     public UtilisateurDAO(Connection conn) {
         this.connect = conn;
     }
 
-      
     public boolean creer(Utilisateur obj) {
         //Reste à modifier
 //        try {
@@ -35,10 +37,9 @@ public class UtilisateurDAO {
 //        } catch (Exception ex) {
 //            System.out.println(ex);
 //        }
-       return false;
+        return false;
     }
 
-      
     public boolean supprimer(Utilisateur obj) {
         try {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM utilisateur WHERE ID=?");
@@ -50,19 +51,17 @@ public class UtilisateurDAO {
         return false;
     }
 
-      
     public boolean modifier(Utilisateur obj) {
         return false;
     }
 
-      
     public Utilisateur trouver(String email) {
         Utilisateur user = null;
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE EMAIL = '"+ email +"'");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE EMAIL = '" + email + "'");
             if (result.first()) {
                 user = new Utilisateur(
                         result.getInt("ID"),
@@ -78,14 +77,14 @@ public class UtilisateurDAO {
         }
         return user;
     }
-    
-        public Utilisateur trouver(int id) {
+
+    public Utilisateur trouver(int id) {
         Utilisateur user = null;
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE ID = '"+ id +"'");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE ID = '" + id + "'");
             if (result.first()) {
                 user = new Utilisateur(
                         id,
@@ -100,5 +99,24 @@ public class UtilisateurDAO {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public ArrayList trouverTous() {
+        ArrayList<Utilisateur> enseignants = new ArrayList<>();
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE DROIT = 3 ");
+
+            while (result.next()) {
+                for (int i = 1; i < 2; i++) {
+                    Utilisateur ens = this.trouver(result.getInt("ID"));//new Utilisateur(result.getInt("ID"),result.getString("EMAIL"), result.getString("MDP"), result.getString("NOM"), result.getString("PRENOM"), result.getInt("DROIT"));
+                    enseignants.add(ens);
+                }
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(EleveDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return enseignants;
     }
 }

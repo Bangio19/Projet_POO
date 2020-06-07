@@ -32,19 +32,10 @@ public class Recherche {
         
         Enseignant en;
         Seance sea;
-        SeanceEnseignant seen;
-        
-        
-        
-        
-        
-        
+        SeanceEnseignant seen;        
         
     }
-   
- 
- 
-    }   
+  
     public void consulter_cours_annule_etudiant(Etudiant eleve, int semaine)
     {
         DBConnect conn = new DBConnect();
@@ -100,5 +91,23 @@ public class Recherche {
         c1.setTime(seance.getDate());
         
         return c1.get(Calendar.DAY_OF_WEEK);
+    }
+    
+    public ArrayList getAllUsers(){
+        DBConnect conn = new DBConnect();
+        Connection connect = conn.getCon();
+        UtilisateurDAO user = new UtilisateurDAO(connect);
+        
+       ArrayList<Utilisateur> users = user.trouverTous();
+       return users;
+    }
+    
+    public ArrayList getAllSeances(){
+        DBConnect conn = new DBConnect();
+        Connection connect = conn.getCon();
+        SeanceDAO seanceDAO = new SeanceDAO(connect);
+        
+       ArrayList<Seance> seances = seanceDAO.trouverTous();
+       return seances;
     }
 }

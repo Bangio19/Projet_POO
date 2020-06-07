@@ -18,7 +18,6 @@ public class Planning extends JFrame {
       setTitle("Mon planning");
       setSize(1600,800);
       setLocationRelativeTo(null);
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
        container = new JPanel();
        

@@ -9,6 +9,7 @@ import DAO.*;
 import Model.*;
 import Projet_POO.DBConnect;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.logging.Level;
@@ -22,10 +23,23 @@ public class Mise_a_jour {
 
     public void affecter_enseignant_a_seance(Enseignant prof, Seance seance) {
         DBConnect conn = new DBConnect();
-        Connection connect = conn.getCon();
-        SeanceDAO seanceDAO = new SeanceDAO(connect);
+        Connection connect = conn.getCon();       
+        
+        //SeanceDAO seanceDAO = new SeanceDAO(connect);
+        //EnseignantDAO profDAO = new EnseignantDAO(connect);
+        SeanceEnseignantDAO seanEnsDAO = new SeanceEnseignantDAO(connect);
+
+        boolean verif = seanEnsDAO.check_libre(prof, seance);
+        System.out.println("On a passe la methode check");
+        System.out.println("verif egal a :" + verif);
+
+        if (verif == true) {
+            seanEnsDAO.creer(prof, seance);
+            System.out.println("Tout s'est bien passe");
+        }
 
     }
+    
 
     public void affecter_groupe_a_seance(Groupe grp, Seance seance) {
         DBConnect conn = new DBConnect();

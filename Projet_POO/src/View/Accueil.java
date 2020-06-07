@@ -67,7 +67,7 @@ public class Accueil extends JFrame implements ActionListener {
 
         setContentPane(menu);
 
-       
+       setVisible(true);
     }
    
     @Override
@@ -82,7 +82,7 @@ public class Accueil extends JFrame implements ActionListener {
             Connexion connexion = new Connexion();
            
             connexion.verif_utilisateur_lancement_menu_correspondant(utilisateurLogin, utilisateurPwd);
-            
+            setVisible(false);
             
         }
     }

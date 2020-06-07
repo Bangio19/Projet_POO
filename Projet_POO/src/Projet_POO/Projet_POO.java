@@ -36,8 +36,7 @@ public class Projet_POO {
         DBConnect conn = new DBConnect();
         Connection connect = conn.getCon();
         Accueil accueil = new Accueil();
-        
-        accueil.setVisible(true);
+       
         
 
         //connect.getData();
