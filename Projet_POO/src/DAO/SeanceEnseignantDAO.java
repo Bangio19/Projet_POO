@@ -43,7 +43,33 @@ public class SeanceEnseignantDAO  {
         }
         return false;
     }
-
+    
+    public ArrayList trouver_tous_les_groupes(int id) {
+        ArrayList<SeanceEnseignant> seances = new ArrayList<SeanceEnseignant>(); 
+            try 
+            {
+                PreparedStatement adr = null;
+                ResultSet rz = null;
+                adr  = this.connect.prepareStatement("SELECT * FROM seance_enseignants WHERE ID_ENSEIGNANT=?");
+                adr.setInt(1, id);
+                rz = adr.executeQuery();                
+                ResultSetMetaData resultMeta = rz.getMetaData();
+                
+                while(rz.next())
+                {
+                    for(int i = 1; i< resultMeta.getColumnCount();i++)
+                    {
+                        SeanceEnseignant seanEns = new SeanceEnseignant((int) rz.getObject(i),id);
+                        seances.add(seanEns);
+                    }
+                }
+            } 
+            catch (SQLException ex) 
+            {
+                //Logger.getLogger(EleveDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return seances ;
+    }
       
     public boolean modifier(SeanceEnseignant obj) {
         try {

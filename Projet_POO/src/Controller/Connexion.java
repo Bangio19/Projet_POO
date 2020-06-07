@@ -57,7 +57,7 @@ public class Connexion {
         }
     }
     
-    public String get_nom_etudiant(int id_utilisateur)
+    public String get_nom(int id_utilisateur)
     {
         DBConnect conn = new DBConnect();
         Connection connect = conn.getCon();

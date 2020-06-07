@@ -68,6 +68,7 @@ public class Accueil extends JFrame implements ActionListener {
         setContentPane(menu);
 
        setVisible(true);
+
     }
    
     @Override
