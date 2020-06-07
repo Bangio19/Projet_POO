@@ -249,12 +249,12 @@ public class Mise_a_jour {
         seanceDAO.modifier(seance);
     }
 
-    public void enlever_groupe_a_seance(int idG, int idS) {
+    public void enlever_groupe_a_seance(SeanceGroupe sgrp) {
         DBConnect conn = new DBConnect();
         Connection connect = conn.getCon();
         SeanceGroupeDAO seancegrpDAO = new SeanceGroupeDAO(connect);
 
-        seancegrpDAO.supprimer(idG,idS);
+        seancegrpDAO.supprimer(sgrp);
 
     }
 
