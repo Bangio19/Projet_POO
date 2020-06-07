@@ -488,4 +488,12 @@ public class Recherche {
         
     }
 
+    public ArrayList<SeanceGroupe> getAllSeanceGroups() {
+         DBConnect conn = new DBConnect();
+        Connection connect = conn.getCon();
+        SeanceGroupeDAO groupeDAO = new SeanceGroupeDAO(connect);
+        
+       ArrayList<SeanceGroupe> groups = groupeDAO.trouvertous();
+       return groups;
+    }
 }

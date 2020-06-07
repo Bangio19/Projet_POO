@@ -59,11 +59,11 @@ public class SeanceGroupeDAO {
         return false;
     }
 
-    public boolean supprimer(SeanceGroupe obj) {
+    public boolean supprimer(SeanceGroupe sgrp) {
         try {
             PreparedStatement st = this.connect.prepareStatement("DELETE FROM seance_groupes WHERE ID_SEANCE=? AND ID_GROUPE=?");
-            st.setInt(1, obj.getIdSeance());
-            st.setInt(2, obj.getIdGroupe());
+            st.setInt(1, sgrp.getIdSeance());
+            st.setInt(2, sgrp.getIdGroupe());
             st.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -163,6 +163,28 @@ public class SeanceGroupeDAO {
             while (rz.next()) {
                 for (int i = 1; i < resultMeta.getColumnCount(); i++) {
                     SeanceGroupe seanGrp = new SeanceGroupe((int) rz.getObject(i), id);
+                    seances.add(seanGrp);
+                }
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(EleveDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return seances;
+    }
+    
+    public ArrayList trouvertous() {
+        ArrayList<SeanceGroupe> seances = new ArrayList<SeanceGroupe>();
+        try {
+            PreparedStatement adr = null;
+            ResultSet rz = null;
+            adr = this.connect.prepareStatement("SELECT * FROM seance_groupes");
+           
+            rz = adr.executeQuery();
+            ResultSetMetaData resultMeta = rz.getMetaData();
+
+            while (rz.next()) {
+                for (int i = 1; i < resultMeta.getColumnCount(); i++) {
+                    SeanceGroupe seanGrp = new SeanceGroupe((int) rz.getObject(i), (int) rz.getInt("ID_GROUPE"));
                     seances.add(seanGrp);
                 }
             }
