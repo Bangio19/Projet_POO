@@ -1,5 +1,6 @@
 
 package View;
+import Controller.AfficherCours;
 import javax.swing.*;
 import java.awt.*;
 import DAO.SeanceDAO;
@@ -163,8 +164,11 @@ public class Planning extends JFrame {
           {
             if(i == tab_case[j])
             {
-                JLabel cours = new JLabel(" reussi  ");
-                nouveau.add(cours);
+                /*JLabel cours = new JLabel(" reussi  ");
+                nouveau.add(cours);*/
+                
+                AfficherCours cours = new AfficherCours();
+                nouveau = cours.Afi(listeSeance.get(j));
             }
           }
           
