@@ -17,7 +17,7 @@ public class EnseignantMenu  extends JFrame implements ActionListener{
       private final JPanel container ,nord;
    private final JLabel lundi, mardi, mercredi, jeudi, vendredi,h1,h2,h3,h4,h5,h6,h7;
    
-    private final JButton btn_emploi_du_temps, btn_recap_cours;
+    private final JButton btn_emploi_du_temps, btn_recap_cours,Ssuivant,Sprecedent;
     
     public EnseignantMenu (int id){
         super();
@@ -28,7 +28,11 @@ public class EnseignantMenu  extends JFrame implements ActionListener{
       
       btn_emploi_du_temps = new JButton("Voir emploi du temps");
         btn_recap_cours = new JButton("Voir le recapitulatif des cours");
+        Ssuivant = new JButton("Semaine suivante");
+        Sprecedent = new JButton("Semaine précédente");
         
+        Ssuivant.addActionListener(this);
+        Sprecedent.addActionListener(this);
         btn_emploi_du_temps.addActionListener(this);
         btn_recap_cours.addActionListener(this);
       
@@ -47,14 +51,14 @@ public class EnseignantMenu  extends JFrame implements ActionListener{
        h5= new JLabel("15h30 / 17h");
        h6= new JLabel("17h15 / 18h45");
        h7= new JLabel("19h / 20h30");
+       container.setLayout(new GridLayout(8,6));
        
        nord.add("North", btn_emploi_du_temps);
 	nord.add("North", btn_recap_cours);
-       container.setLayout(new GridLayout(8,6));
-       // On cherche une séance
        
-       
-         for(int i=0; i<48 ; i++){
+      
+            
+       for(int i=0; i<48 ; i++){
           
             JPanel nouveau = new JPanel();
           
@@ -74,7 +78,6 @@ public class EnseignantMenu  extends JFrame implements ActionListener{
           if(i == 5){
               nouveau.add(vendredi);
           }
-          
           // Horaire affichage 
           
            if(i == 6){
@@ -98,13 +101,10 @@ public class EnseignantMenu  extends JFrame implements ActionListener{
           if(i == 42){
               nouveau.add(h7);
           }
-
-          
           nouveau.setBorder(BorderFactory.createLineBorder(Color.black,1));
           container.add(nouveau);
-            
-        }
-        
+       }
+       
      add("North",nord);
      add("Center",container);
             
@@ -122,12 +122,18 @@ public class EnseignantMenu  extends JFrame implements ActionListener{
         if(source == btn_emploi_du_temps)
         {
             System.out.println("Voici votre emploi du temps de la semaine 1.");
-            
+             //add("Center",container);
         }
-        else if(source == btn_recap_cours)
+         if(source == btn_recap_cours)
         {
             System.out.println("Voici votre récapitulatif de cours");
         }
+         if (source== Ssuivant){
+             
+         }
+         if (source == Sprecedent ){
+             
+         }
     }
      
      

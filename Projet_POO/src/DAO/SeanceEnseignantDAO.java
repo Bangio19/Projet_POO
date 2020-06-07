@@ -151,7 +151,7 @@ public class SeanceEnseignantDAO  {
                  }
              }
         }catch(SQLException e){
-            //Logger.getLogger(EleveDAO.class.getName()).log(Level.SEVERE, null, ex);
+            e.printStackTrace();
                       }
         return se;
         }

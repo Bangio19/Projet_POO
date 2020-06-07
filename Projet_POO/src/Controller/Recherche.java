@@ -21,26 +21,57 @@ public class Recherche {
     //ArrayList<Seance> listSeance= new ArrayList<Seance>();
     
     
-    public void consulter_cours_enseignant(int id)
+    public ArrayList<Seance> consulter_cours_enseignant(int id, int semaine)
     {
         DBConnect conn = new DBConnect();
         Connection connect=conn.getCon(); 
-        
-        EnseignantDAO e = new EnseignantDAO(connect);
+      
         SeanceDAO Se = new SeanceDAO(connect);
         SeanceEnseignantDAO sg = new SeanceEnseignantDAO(connect);
         
-        Enseignant en;
         Seance sea;
         SeanceEnseignant seen;
+       
+        ArrayList<SeanceEnseignant> L1 = new  ArrayList<SeanceEnseignant>();
+        L1 = sg.toutSelect(id);
         
+        ArrayList<Seance> L2 = new ArrayList<Seance>();
+        Seance s;
+        for(int i=0; i< L1.size(); i++){
+            s = Se.trouver(L1.get(i).getIdSeance());
+            L2.add(s);
+        }
+        for(int i=0 ; i< L2.size(); i++){
+            if(L2.get(i).getSemaine()!= semaine){
+                L2.remove(i);
+            }
+        }
         
-        
-        
-        
-        
-        
+      return L2;     
     }
+    
+    public int getPosition(Seance a){
+        int position =  0;
+        int jour = jourSemaine(a);
+        if (jour == 2){
+            
+            
+        }
+        if (jour == 3){
+            
+        }
+        if (jour == 4){
+            
+        }
+        if (jour == 5){
+            
+        }
+        if (jour == 6){
+            
+        }
+        return position;
+    }
+    
    
  
  
