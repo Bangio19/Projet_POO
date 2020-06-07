@@ -178,7 +178,7 @@ public class SeancesMenu extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            SeancesMenu seances= new SeancesMenu();
+            AnnValSeance seances= new AnnValSeance();
         }
 
     }
